@@ -24,3 +24,5 @@ app.get('/stocks/:stock', (req, res) => {
 
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+
+module.exports = PORT;

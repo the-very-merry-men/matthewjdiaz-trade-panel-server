@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import TradePanel from './components/TradePanel.jsx';
 
-ReactDOM.render(<App/>, document.getElementById('trade-panel'));
+ReactDOM.render(<TradePanel/>, document.getElementById('trade-panel'));

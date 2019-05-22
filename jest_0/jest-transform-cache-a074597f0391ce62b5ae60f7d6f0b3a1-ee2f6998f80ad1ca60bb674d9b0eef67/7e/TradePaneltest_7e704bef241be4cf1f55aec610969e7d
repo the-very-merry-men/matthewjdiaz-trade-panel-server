@@ -1,0 +1,19 @@
+5eb308614c87fc326f8e10e173a6acd1
+"use strict";
+
+var _react = _interopRequireDefault(require("react"));
+
+require("isomorphic-fetch");
+
+var _TradePanel = _interopRequireDefault(require("../client/src/components/TradePanel.jsx"));
+
+var _enzyme = require("enzyme");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+describe('Trade panel behavior', () => {
+  it('should show results for the current stock', () => {
+    const wrapper = (0, _enzyme.shallow)(_react.default.createElement(_TradePanel.default, null));
+  });
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlRyYWRlUGFuZWwudGVzdC5qc3giXSwibmFtZXMiOlsiZGVzY3JpYmUiLCJpdCIsIndyYXBwZXIiXSwibWFwcGluZ3MiOiI7O0FBQUE7O0FBQ0E7O0FBQ0E7O0FBQ0E7Ozs7QUFFQUEsUUFBUSxDQUFDLHNCQUFELEVBQXlCLE1BQU07QUFDckNDLEVBQUFBLEVBQUUsQ0FBQywyQ0FBRCxFQUE4QyxNQUFNO0FBQ3BELFVBQU1DLE9BQU8sR0FBRyxxQkFBUSw2QkFBQyxtQkFBRCxPQUFSLENBQWhCO0FBQ0QsR0FGQyxDQUFGO0FBR0QsQ0FKTyxDQUFSIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCBcImlzb21vcnBoaWMtZmV0Y2hcIjtcbmltcG9ydCBUcmFkZVBhbmVsIGZyb20gJy4uL2NsaWVudC9zcmMvY29tcG9uZW50cy9UcmFkZVBhbmVsLmpzeCc7XG5pbXBvcnQgeyBzaGFsbG93LCByZW5kZXIsIG1vdW50IH0gZnJvbSAnZW56eW1lJztcblxuZGVzY3JpYmUoJ1RyYWRlIHBhbmVsIGJlaGF2aW9yJywgKCkgPT4ge1xuICBpdCgnc2hvdWxkIHNob3cgcmVzdWx0cyBmb3IgdGhlIGN1cnJlbnQgc3RvY2snLCAoKSA9PiB7XG4gICAgY29uc3Qgd3JhcHBlciA9IHNoYWxsb3coPFRyYWRlUGFuZWwvPik7XG4gIH0pXG59KSJdfQ==

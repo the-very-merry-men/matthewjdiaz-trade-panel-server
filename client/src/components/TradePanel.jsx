@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import OrderTypes from './OrderTypes.jsx';
 import $ from 'jquery';
 
-class App extends Component {
+class TradePanel extends Component {
   constructor(props) {
     super(props);
 
@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   fetchData() {
-    fetch(`/api/stocks/${this.state.stock}/price`)
+    fetch(`http://localhost:3001/api/stocks/${this.state.stock}/price`)
       .then(res => res.json())
       .then(data => this.setState({ data }))
       .catch(err => console.log(err));
@@ -65,4 +65,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default TradePanel;

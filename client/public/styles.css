@@ -26,9 +26,14 @@ body {
   flex:0;
 }
 
-.active {
-  margin-bottom: -5px;
-  border-bottom: 5px solid #21ce99;
+.active-bottom {
+  padding-top: 3px;
+  border-bottom: 3px solid #21ce99;
+}
+
+.active-left {
+  margin-right: 3px;
+  border-left: 3px solid #21ce99;
 }
 
 .list-container {
@@ -50,7 +55,13 @@ body {
   padding-right: 20px;
 }
 
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
 #order-types {
+  animation: fadeIn ease 0.2s;
   position: absolute;
   top: 55px;
   left: 80px;
@@ -63,15 +74,16 @@ body {
 
 ul {
   list-style-type: none;
-  padding-left: 20px;
+  padding: 0;
 }
 
 li {
+  padding: 5px 20px;
   margin: 15px 0;
 }
 
 a {
-  padding: 10px 0;
+  padding: 5px 0;
   text-decoration: none;
   color: black;
   display:block;

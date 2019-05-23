@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.5% </span>
+        <span class="strong">71.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/16</span>
+        <span class='fraction'>15/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80% </span>
+        <span class="strong">78.57% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>8/10</span>
+        <span class='fraction'>11/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.55% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/11</span>
+        <span class='fraction'>8/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.29% </span>
+        <span class="strong">73.68% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/14</span>
+        <span class='fraction'>14/19</span>
       </div>
     </div>
     <p class="quiet">
@@ -113,7 +113,18 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,7 +142,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -156,6 +167,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,9 +190,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,7 +200,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
 import OrderTypes from './OrderTypes.jsx';
-import $ from 'jquery';
+import orderStructure from './orderStructure.jsx';
+import Options from './Options.jsx';
+import Icon from './Icon.jsx';
 &nbsp;
 class TradePanel extends Component {
   constructor(props) {
@@ -191,14 +211,14 @@ class TradePanel extends Component {
     this.state = {
       stock: 'inst',
       data: [],
-      orderTypes: ['Market Order', 'Limit Order', 'Stop Loss Order', 'Stop Limit Order'],
+      orderStructure,
       showOrderTypes: false,
       currType: 0
     };
-&nbsp;
   }
 &nbsp;
   componentDidMount() {
+    console.log(this.state.orderStructure);
     let match = window.location.pathname.match(/\/stocks\/(\w+)/i);
     const stock = match ? <span class="branch-0 cbranch-no" title="branch not covered" >match[1] </span>: null;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (stock) {
@@ -222,25 +242,32 @@ class TradePanel extends Component {
 <span class="cstat-no" title="statement not covered" >    this.setState({ currType });</span>
   }
 &nbsp;
+  payloadSwitch(label) {
+    switch(label) {
+      case 'Market Price':
+        return this.state.data.length ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;div id="price"&gt;{`$${this.state.data[0].price}`}&lt;/div&gt; </span>: null;
+      default:
+        return 'lawl'
+    }
+  }
+&nbsp;
   render() {
     return (
       &lt;div&gt;
-        {this.state.showOrderTypes ? &lt;OrderTypes orderTypes={this.state.orderTypes} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/&gt; : null}
+        {this.state.showOrderTypes ? &lt;OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/&gt; : null}
         &lt;div className='header'&gt;
           &lt;div id='header-left'&gt;
             &lt;h3&gt;Buy {this.state.stock.toUpperCase()}&lt;/h3&gt;
           &lt;/div&gt;
           &lt;div id='header-right' className={this.state.showOrderTypes ? 'active-bottom' : ''}&gt;
             &lt;svg id='menu' className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes.bind(this)}&gt;
-              &lt;path fillRule="evenodd" d="M14,16 C12.8954305,16 12,15.1045695 12,14 C12,12.8954305 12.8954305,12 14,12 C15.1045695,12 16,12.8954305 16,14 C16,15.1045695 15.1045695,16 14,16 Z M6,16 C4.8954305,16 4,15.1045695 4,14 C4,12.8954305 4.8954305,12 6,12 C7.1045695,12 8,12.8954305 8,14 C8,15.1045695 7.1045695,16 6,16 Z M22,16 C20.8954305,16 20,15.1045695 20,14 C20,12.8954305 20.8954305,12 22,12 C23.1045695,12 24,12.8954305 24,14 C24,15.1045695 23.1045695,16 22,16 Z"&gt;&lt;/path&gt;
+              &lt;Icon/&gt;
             &lt;/svg&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div className='main-container'&gt;
-          &lt;div className="list-container"&gt;
-            &lt;div className="box-left"&gt;Commissions&lt;/div&gt;
-            &lt;div className="box-right"&gt;$0.00&lt;/div&gt;
-          &lt;/div&gt;
+          {this.state.orderStructure[this.state.currType].options.map(input =&gt; &lt;Options key={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/&gt;)}
+          &lt;Options label="Commissions" type="text" payload="$0.00"/&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     );
@@ -253,7 +280,7 @@ export default TradePanel;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed May 22 2019 18:18:09 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed May 22 2019 21:21:32 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

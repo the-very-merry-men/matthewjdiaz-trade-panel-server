@@ -37,7 +37,7 @@ describe('Trade panel behavior', () => {
     const wrapper = shallow(<TradePanel/>);
     let currType = wrapper.state().currType;
     expect(currType).toEqual(0);
-    expect(wrapper.state().orderTypes[currType]).toBe('Market Order');
+    expect(wrapper.state().orderStructure[currType].type).toBe('Market Order');
   });
 
   it.todo('should update the price upon changing quantity of shares');
@@ -45,4 +45,5 @@ describe('Trade panel behavior', () => {
   it.todo('should render stop price input after changing order type to Stop Loss Order');
   it.todo('should render stop price AND limit price inputs after changing order type to Stop Limit Order');
   it.todo('should update commissions field dynamically upon changing share quantity');
+  it.todo('should retain value for stock quantity upon changing order type');
 });

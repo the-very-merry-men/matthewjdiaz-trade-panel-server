@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/components/OrderTypes.jsx</title>
+    <title>Code coverage report for src/components/Options.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">All files</a> / <a href="index.html">src/components</a> OrderTypes.jsx
+      <a href="../../index.html">All files</a> / <a href="index.html">src/components</a> Options.jsx
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/6</span>
+        <span class='fraction'>2/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/5</span>
+        <span class='fraction'>2/7</span>
       </div>
     </div>
     <p class="quiet">
@@ -63,7 +63,20 @@
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -72,32 +85,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import $ from 'jquery';
 &nbsp;
-const OrderTypes = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (
-<span class="cstat-no" title="statement not covered" >  &lt;div id="order-types"&gt;</span>
-    &lt;div className="header"&gt;
-      &lt;div id="header-left"&gt;&lt;h3&gt;Order Type&lt;/h3&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;ul&gt;
-      {props.orderStructure.map(<span class="fstat-no" title="function not covered" >(s</span>tructure, index) =&gt; <span class="cstat-no" title="statement not covered" >&lt;li key={index} className={props.currType === index ? 'active-left' : ''}&gt;&lt;strong&gt;&lt;a href="#" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        props.changeType(index);</span>
-<span class="cstat-no" title="statement not covered" >        $('#order-types').fadeOut('fast', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >props.showOrderTypes())</span>;</span>
-        }}&gt;{structure.type}&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;)}
-    &lt;/ul&gt;
+const renderSwitch = <span class="fstat-no" title="function not covered" >(t</span>ype, payload) =&gt; {
+<span class="cstat-no" title="statement not covered" >  switch(type) {</span>
+    case 'input':
+<span class="cstat-no" title="statement not covered" >      return &lt;input type="text" id="input-lg"&gt;&lt;/input&gt;</span>
+    case 'text':
+<span class="cstat-no" title="statement not covered" >      return &lt;strong&gt;{payload}&lt;/strong&gt;;</span>
+    default:
+<span class="cstat-no" title="statement not covered" >      return 'dunno lol'</span>
+  }
+}
+&nbsp;
+const Options = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (
+<span class="cstat-no" title="statement not covered" >  &lt;div className="list-container"&gt;</span>
+    &lt;div className="box-left"&gt;{props.label}&lt;/div&gt;
+    &lt;div className="box-right"&gt;{renderSwitch(props.type, props.payload)}&lt;/div&gt;
   &lt;/div&gt;
 );
 &nbsp;
-export default OrderTypes;</pre></td></tr>
+export default Options;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

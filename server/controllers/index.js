@@ -1,8 +1,8 @@
-const models = require('./models');
+const models = require('../models');
 
 const getPrice = (ticker, callback) => {
   models.Stocks.findAll({
-    attributes: ['ticker'],
+    attributes: ['price'],
     where: {
       ticker
     }

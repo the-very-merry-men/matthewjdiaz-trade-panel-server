@@ -1,0 +1,112 @@
+@font-face {
+  font-family: 'dinpro';
+  src: url('fonts/dinpro.otf');
+}
+
+body {
+  font-family: 'dinpro';
+  font-size: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: stretch;
+  border-bottom:1px solid #cbcbcd;
+}
+
+#header-left {
+  padding-left: 20px;
+  flex:1;
+}
+
+#header-right {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  flex:0;
+}
+
+.active-bottom {
+  padding-top: 3px;
+  border-bottom: 3px solid #21ce99;
+}
+
+.active-left {
+  margin-right: 3px;
+  border-left: 3px solid #21ce99;
+}
+
+.list-container {
+  display: flex;
+  margin: 20px 0;
+}
+
+.box-left {
+  padding-left: 20px;
+  flex: 1;
+  flex-basis: 50%;
+  text-align: left;
+}
+
+#menu {
+  cursor: pointer;
+}
+
+#menu:hover {
+  fill: #21ce99;
+}
+
+.active {
+  fill: #21ce99;
+}
+
+.box-right {
+  flex: 1;
+  flex-basis: 50%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+#order-types {
+  animation: fadeIn ease 0.2s;
+  position: absolute;
+  top: 55px;
+  left: 100px;
+  height: 260px;
+  width: 180px;
+  background-color: white;
+  box-shadow:  0 0 10px 1px rgba(0,0,0,0.05);
+  border-radius: 3px;
+}
+
+#trade-panel {
+  width: 275px;
+  height: 400px;
+  box-shadow:  0 0 10px 1px rgba(0,0,0,0.05);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 5px 20px;
+  margin: 15px 0;
+}
+
+a {
+  padding: 5px 0;
+  text-decoration: none;
+  color: black;
+  display:block;
+}
+
+a:hover {
+  color: #21ce99;
+}

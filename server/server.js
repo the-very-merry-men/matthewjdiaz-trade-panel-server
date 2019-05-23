@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const path = require('path');
 
-// const controllers = require('./controllers');
+const controllers = require('./controllers');
 
 const app = express();
 const PORT = 3001;
@@ -24,3 +24,5 @@ app.get('/stocks/:stock', (req, res) => {
 
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+
+module.exports = PORT;

@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/16</span>
+        <span class='fraction'>10/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/8</span>
+        <span class='fraction'>8/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.36% </span>
+        <span class="strong">54.55% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/11</span>
+        <span class='fraction'>6/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.14% </span>
+        <span class="strong">64.29% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/14</span>
+        <span class='fraction'>9/14</span>
       </div>
     </div>
     <p class="quiet">
@@ -119,11 +119,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,31 +130,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,8 +214,8 @@ class TradePanel extends Component {
       .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >console.log(err))</span>;
   }
   
-<span class="fstat-no" title="function not covered" >  sh</span>owOrderTypes() {
-<span class="cstat-no" title="statement not covered" >    this.setState( <span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{ showOrderTypes: !state.showOrderTypes })</span>);</span>
+  showOrderTypes() {
+    this.setState( state =&gt; ({ showOrderTypes: !state.showOrderTypes }));
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ch</span>angeType(currType) {
@@ -225,13 +225,13 @@ class TradePanel extends Component {
   render() {
     return (
       &lt;div&gt;
-        {this.state.showOrderTypes ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;OrderTypes orderTypes={this.state.orderTypes} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/&gt; </span>: null}
+        {this.state.showOrderTypes ? &lt;OrderTypes orderTypes={this.state.orderTypes} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/&gt; : null}
         &lt;div className='header'&gt;
           &lt;div id='header-left'&gt;
             &lt;h3&gt;Buy {this.state.stock.toUpperCase()}&lt;/h3&gt;
           &lt;/div&gt;
-          &lt;div id='header-right' className={this.state.showOrderTypes ? <span class="branch-0 cbranch-no" title="branch not covered" >'active-bottom' </span>: ''}&gt;
-            &lt;svg width='28' height='28' onClick={this.showOrderTypes.bind(this)}&gt;
+          &lt;div id='header-right' className={this.state.showOrderTypes ? 'active-bottom' : ''}&gt;
+            &lt;svg id='menu' className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes.bind(this)}&gt;
               &lt;path fillRule="evenodd" d="M14,16 C12.8954305,16 12,15.1045695 12,14 C12,12.8954305 12.8954305,12 14,12 C15.1045695,12 16,12.8954305 16,14 C16,15.1045695 15.1045695,16 14,16 Z M6,16 C4.8954305,16 4,15.1045695 4,14 C4,12.8954305 4.8954305,12 6,12 C7.1045695,12 8,12.8954305 8,14 C8,15.1045695 7.1045695,16 6,16 Z M22,16 C20.8954305,16 20,15.1045695 20,14 C20,12.8954305 20.8954305,12 22,12 C23.1045695,12 24,12.8954305 24,14 C24,15.1045695 23.1045695,16 22,16 Z"&gt;&lt;/path&gt;
             &lt;/svg&gt;
           &lt;/div&gt;
@@ -253,7 +253,7 @@ export default TradePanel;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed May 22 2019 16:48:22 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed May 22 2019 18:18:09 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

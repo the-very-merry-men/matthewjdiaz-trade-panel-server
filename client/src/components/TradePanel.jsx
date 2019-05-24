@@ -17,9 +17,8 @@ class TradePanel extends Component {
       cost: 0
     };
   }
-
+  
   componentDidMount() {
-    console.log(this.state.orderStructure);
     let match = window.location.pathname.match(/\/stocks\/(\w+)/i);
     const stock = match ? match[1] : null;
     if (stock) {
@@ -56,6 +55,11 @@ class TradePanel extends Component {
     }
   }
 
+  changeTotal(shares) {
+    const price = this.state.data ? this.state.data[0].price : 0;
+    this.setState({ cost: (price*shares).toFixed(2) });
+  }
+
   render() {
     return (
       <div className="main-container">
@@ -64,13 +68,13 @@ class TradePanel extends Component {
             <h3>Buy {this.state.stock.toUpperCase()}</h3>
           </div>
           <div id='header-right' className={this.state.showOrderTypes ? 'active-bottom' : ''}>
-            <svg id='menu' className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes.bind(this)}>
+            <svg id='menu' ref={node => this.node = node} className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes.bind(this)}>
               <Icon/>
             </svg>
           </div>
         </div>
         <div className='main-container'>
-          {this.state.orderStructure[this.state.currType].options.map(input => <Options key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
+          {this.state.orderStructure[this.state.currType].options.map(input => <Options changeTotal={this.changeTotal.bind(this)} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
           <hr></hr>
           <Options label={<strong>{"Estimated Cost"}</strong>} type="text" payload={`$${this.state.cost}`}/>
           <button id="review-order" href="#">Review Order</button>

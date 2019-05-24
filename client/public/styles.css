@@ -29,9 +29,23 @@ body {
   border-bottom: 3px solid #21ce99;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 5px 20px;
+  margin: 15px 0;
+}
+
 .active-left {
   margin-right: 3px;
   border-left: 3px solid #21ce99;
+}
+
+li.active-left {
+  padding-left: -3px;
 }
 
 .list-container {
@@ -100,15 +114,6 @@ body {
   box-shadow:  0 0 10px 1px rgba(0,0,0,0.05);
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  padding: 5px 20px;
-  margin: 15px 0;
-}
 
 a {
   padding: 5px 0;
@@ -129,7 +134,6 @@ input {
   border: 1px solid #fafafa;
   border-radius: 4px;
   height: 34px;
-  width: auto;
   line-height: 1.5em;
   padding: 0 13px;
   transition: border-color 0.1s ease-in;
@@ -198,7 +202,7 @@ option:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: absolute;
-  height: 300px;
+  height: auto;
   width: inherit;
   top: 22px;
   border-bottom-left-radius: 3px;
@@ -206,9 +210,38 @@ option:hover {
   border: 1px solid #0fecaa;
   border-top: 0px;
   background-color: white;
+  text-align: left;
 }
 
-#input-lg.dd-activated {
+#values li {
+  padding: 0 10px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.highlighted {
+  background: #21ce99;
+  color: white;
+}
+
+#dd:hover {
+  background: white;
+  border-color: #d6d6d6;
+}
+
+#dd.dd-activated {
   background: white;
   border-color: #0fecaa;
+}
+
+#dd {
+  text-align: left;
+  font-size: 13px;
+  background: #fafafa;
+  border: 1px solid #fafafa;
+  border-radius: 4px;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 13px;
+  transition: border-color 0.1s ease-in;
 }

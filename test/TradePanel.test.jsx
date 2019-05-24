@@ -50,4 +50,5 @@ describe('Trade panel behavior', () => {
   it.todo('should not accept non-numeric characters');
   it.todo('should accept decimal characters for stop and limit price');
   it.todo('should turn red upon submitting decimal value for share quantity');
+  it.todo('should close menu upon clicking anywhere outside the menu');
 });

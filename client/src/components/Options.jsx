@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import Select from './Select.jsx';
 
 const validateInput = (e, type, dataKey) => {
   const regex = /\d+\.?\d*/i;
@@ -18,10 +19,7 @@ const renderSwitch = (type, payload, dataKey) => {
     case 'text':
       return <strong>{payload}</strong>;
     case 'dropdown':
-      return (<select>
-              <option value="Good for Day">Good for Day</option>
-              <option value="Good till Canceled">Good till Canceled</option>
-            </select>);
+      return <Select values={['Good for day', 'Good till Canceled']}/>;
     default:
       return 'dunno lol'
   }

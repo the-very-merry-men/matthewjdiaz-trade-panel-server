@@ -58,8 +58,7 @@ class TradePanel extends Component {
 
   render() {
     return (
-      <div>
-        {this.state.showOrderTypes ? <OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/> : null}
+      <div className="main-container">
         <div className='header'>
           <div id='header-left'>
             <h3>Buy {this.state.stock.toUpperCase()}</h3>
@@ -76,6 +75,7 @@ class TradePanel extends Component {
           <Options label={<strong>{"Estimated Cost"}</strong>} type="text" payload={`$${this.state.cost}`}/>
           <button id="review-order" href="#">Review Order</button>
         </div>
+        {this.state.showOrderTypes ? <OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/> : null}
       </div>
     );
   }

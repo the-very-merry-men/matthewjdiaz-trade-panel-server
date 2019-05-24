@@ -46,4 +46,8 @@ describe('Trade panel behavior', () => {
   it.todo('should render stop price AND limit price inputs after changing order type to Stop Limit Order');
   it.todo('should update commissions field dynamically upon changing share quantity');
   it.todo('should retain value for stock quantity upon changing order type');
+  it.todo('should toggle menu off when clicked elsewhere');
+  it.todo('should not accept non-numeric characters');
+  it.todo('should accept decimal characters for stop and limit price');
+  it.todo('should turn red upon submitting decimal value for share quantity');
 });

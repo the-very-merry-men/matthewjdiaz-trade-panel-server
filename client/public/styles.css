@@ -15,14 +15,12 @@ body {
 }
 
 #header-left {
-  padding-left: 20px;
   flex:1;
 }
 
 #header-right {
   display: flex;
   align-items: center;
-  margin-right: 20px;
   flex:0;
 }
 
@@ -38,11 +36,12 @@ body {
 
 .list-container {
   display: flex;
-  margin: 40px 0;
+  margin: 10px 0;
 }
 
 .box-left {
-  padding-left: 20px;
+  height: 34px;
+  line-height: 34px;
   flex: 1;
   flex-basis: 50%;
   text-align: left;
@@ -61,10 +60,11 @@ body {
 }
 
 .box-right {
+  height: 34px;
+  line-height: 34px;
   flex: 1;
   flex-basis: 50%;
   text-align: right;
-  padding-right: 20px;
 }
 
 @keyframes fadeIn {
@@ -84,9 +84,15 @@ body {
   border-radius: 3px;
 }
 
+#order-types .header {
+  padding: 0px 20px;
+}
+
 #trade-panel {
   width: 275px;
-  height: 400px;
+  padding: 0 20px;
+  padding-bottom: 10px;
+  height: auto;
   box-shadow:  0 0 10px 1px rgba(0,0,0,0.05);
 }
 
@@ -109,4 +115,61 @@ a {
 
 a:hover {
   color: #21ce99;
+}
+input {
+  font-family: inherit;
+}
+#input-lg {
+  text-align: right;
+  background: #fafafa;
+  border: 1px solid #fafafa;
+  border-radius: 4px;
+  height: 34px;
+  width: 54px;
+  line-height: 1.5em;
+  padding: 0 13px;
+  transition: border-color 0.1s ease-in;
+}
+
+#input-lg:hover {
+  background: white;
+  border-color: #d6d6d6;
+}
+
+#input-lg:focus {
+  outline: none;
+  background: white;
+  pointer-events: none;
+  border-color: #21ce99;
+}
+
+::placeholder {
+  color: #d6d6d6;
+}
+
+hr {
+  margin: 0;
+  border: none;
+  height:1px;
+  background-color: #cbcbcd;
+}
+
+#review-order {
+  background: #21ce99;
+  border: none;
+  display: block;
+  color: white;
+  font-family: inherit;
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.15;
+}
+
+#review-order:hover {
+  background: #0fecaa;
 }

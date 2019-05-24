@@ -13,7 +13,8 @@ class TradePanel extends Component {
       data: [],
       orderStructure,
       showOrderTypes: false,
-      currType: 0
+      currType: 0,
+      cost: 0
     };
   }
 
@@ -46,9 +47,10 @@ class TradePanel extends Component {
     const price = this.state.data.length ? `$${this.state.data[0].price}` : null;
     switch(label) {
       case 'Market Price':
-        return <div id="price">{price}</div>;
       case 'Limit Price':
         return price;
+      case 'Stop Price':
+        return `$0.00`;
       default:
         return 0;
     }
@@ -69,8 +71,10 @@ class TradePanel extends Component {
           </div>
         </div>
         <div className='main-container'>
-          {this.state.orderStructure[this.state.currType].options.map(input => <Options key={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
-          <Options label="Commissions" type="text" payload="$0.00"/>
+          {this.state.orderStructure[this.state.currType].options.map(input => <Options key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
+          <hr></hr>
+          <Options label={<strong>{"Estimated Cost"}</strong>} type="text" payload={`$${this.state.cost}`}/>
+          <button id="review-order" href="#">Review Order</button>
         </div>
       </div>
     );

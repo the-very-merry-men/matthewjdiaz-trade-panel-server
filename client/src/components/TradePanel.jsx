@@ -16,6 +16,12 @@ class TradePanel extends Component {
       currType: 0,
       cost: 0
     };
+
+    this.fetchData = this.fetchData.bind(this);
+    this.showOrderTypes = this.showOrderTypes.bind(this);
+    this.changeType = this.changeType.bind(this);
+    this.payloadSwitch = this.payloadSwitch.bind(this);
+    this.changeTotal = this.changeTotal.bind(this); 
   }
   
   componentDidMount() {
@@ -68,18 +74,18 @@ class TradePanel extends Component {
             <h3>Buy {this.state.stock.toUpperCase()}</h3>
           </div>
           <div id='header-right' className={this.state.showOrderTypes ? 'active-bottom' : ''}>
-            <svg id='menu' ref={node => this.node = node} className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes.bind(this)}>
+            <svg id='menu' ref={node => this.node = node} className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes}>
               <Icon/>
             </svg>
           </div>
         </div>
         <div className='main-container'>
-          {this.state.orderStructure[this.state.currType].options.map(input => <Options changeTotal={this.changeTotal.bind(this)} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
+          {this.state.orderStructure[this.state.currType].options.map(input => <Options changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
           <hr></hr>
           <Options label={<strong>{"Estimated Cost"}</strong>} type="text" payload={`$${this.state.cost}`}/>
           <button id="review-order" href="#">Review Order</button>
         </div>
-        {this.state.showOrderTypes ? <OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/> : null}
+        {this.state.showOrderTypes ? <OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes}/> : null}
       </div>
     );
   }

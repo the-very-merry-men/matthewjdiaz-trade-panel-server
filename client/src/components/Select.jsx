@@ -10,15 +10,9 @@ class Select extends Component {
       selected: 0,
       highlighted: 0
     };
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
-  }
-
-  componentWillMount() {
-    document.addEventListener('click', this.handleOutsideClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
+    this.showDropdown = this.showDropdown.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.highlight = this.highlight.bind(this);
   }
 
   showDropdown() {
@@ -27,16 +21,8 @@ class Select extends Component {
     $(target).toggleClass('dd-activated');
   }
 
-  handleOutsideClick(e) {
-    if (!this.node || !this.node.contains(e.target)) {
-      this.setState({ showDropdown: false });
-      const target = `#dd[data-id=\"expiration\"]`;
-      $(target).toggleClass('dd-activated');
-    }
-  }
-
   handleClick(selected) {
-    this.setState({ selected, showDropdown: false });
+    this.setState({ selected }, this.showDropdown);
   }
 
   highlight(index) {
@@ -46,8 +32,8 @@ class Select extends Component {
   render() {
     return (
       <div id="dd-container" ref={node => this.node = node}>
-        {this.state.showDropdown ? <Values highlighted={this.state.highlighted} highlight={this.highlight.bind(this)} selected={this.state.selected} values={this.props.values} handleClick={this.handleClick.bind(this)}/> : null}
-        <div id="dd" data-id="expiration" onClick={this.showDropdown.bind(this)}>
+        {this.state.showDropdown ? <Values highlighted={this.state.highlighted} highlight={this.highlight} selected={this.state.selected} values={this.props.values} handleClick={this.handleClick} showDropdown={this.showDropdown}/> : null}
+        <div id="dd" data-id="expiration" onClick={this.showDropdown}>
         {this.props.values[this.state.selected]}
         </div>
       </div>

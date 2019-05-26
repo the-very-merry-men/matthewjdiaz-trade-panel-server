@@ -20,7 +20,7 @@ const renderSwitch = (type, payload, dataKey, changeTotal) => {
         payload ? '' : changeTotal(e.target.value);
       }} placeholder={payload}></input>
     case 'text':
-      return <strong>{payload}</strong>;
+      return <strong data-key={dataKey}>{payload}</strong>;
     case 'dropdown':
       return <Select values={['Good for day', 'Good till Canceled']}/>;
     default:

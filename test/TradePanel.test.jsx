@@ -1,16 +1,24 @@
 import React from 'react';
-import "isomorphic-fetch";
+import 'isomorphic-fetch';
 import TradePanel from '../client/src/components/TradePanel.jsx';
 import { shallow, render, mount } from 'enzyme';
 
+// Create a mock response
+let mockResponse = {
+  json: () => Promise.resolve([{ price: 10 }])
+};
+
+// Overwrite the fetch in the global object with a mock
+global.fetch = jest.fn(() => Promise.resolve(mockResponse));
+
 describe('Trade panel behavior', () => {
   it('renders without exploding', () => {
-    const wrapper = shallow(<TradePanel/>);
+    const wrapper = shallow(<TradePanel />);
     expect(wrapper.length).toEqual(1);
   });
 
   it('should show the ticker for the current stock', () => {
-    const wrapper = shallow(<TradePanel/>);
+    const wrapper = shallow(<TradePanel />);
     let stock = 'GOOG';
     wrapper.setState({ stock }, () => {
       const text = wrapper.find('h3').text();
@@ -19,7 +27,7 @@ describe('Trade panel behavior', () => {
   });
 
   it('should toggle menu upon clicking the menu button', () => {
-    const wrapper = shallow(<TradePanel/>);
+    const wrapper = shallow(<TradePanel />);
     const menuBtn = wrapper.find('#menu');
 
     // Toggle menu on
@@ -34,21 +42,83 @@ describe('Trade panel behavior', () => {
   });
 
   it('should show market order option by default on load', () => {
-    const wrapper = shallow(<TradePanel/>);
+    const wrapper = shallow(<TradePanel />);
     let currType = wrapper.state().currType;
     expect(currType).toEqual(0);
     expect(wrapper.state().orderStructure[currType].type).toBe('Market Order');
   });
 
-  it.todo('should update the price upon changing quantity of shares', () => {
-    const wrapper = shallow(<TradePanel/>);
-    wrapper.find('input[data-key=\"Shares\"]').simulate('change', { target: { value: '2' }});
+  it('should update the estimated cost upon changing quantity of shares', async done => {
+    const wrapper = await mount(<TradePanel />);
+    await wrapper.instance().fetchData();
 
+    // Must be a string
+    const shares = '2';
+
+    // Change amount of shares
+    wrapper.find(`[data-key="Shares"]`).simulate('change', { target: { value: shares }});
+
+    // Compare the updated cost
+    const estimatedCost = wrapper.find('strong[data-key="Estimated Cost"]').text();
+    mockResponse.json().then(response => {
+      const match = estimatedCost.match(/\$(\d+.\d+)/i) ;
+      const extracted = match ? +match[1] : null;
+      expect(extracted).toBe(shares * response[0].price);
+      done();
+    });
   });
-  it.todo('should render limit price input after changing order type to Limit Order');
-  it.todo('should render stop price input after changing order type to Stop Loss Order');
-  it.todo('should render stop price AND limit price inputs after changing order type to Stop Limit Order');
-  it.todo('should update commissions field dynamically upon changing share quantity');
+
+  it('should render limit price input after changing order type to Limit Order', () => {
+    const wrapper = mount(<TradePanel/>);
+    
+    // Open the menu
+    wrapper.find('#menu').simulate('click');
+
+    // Find 2nd option
+    const limitOrderOption = wrapper.find('#order-types ul').children().at(1).find('a');
+    expect(limitOrderOption.text()).toBe('Limit Order');
+
+    // Click the limit order
+    limitOrderOption.simulate('click');
+
+    const limitPriceInput = wrapper.find('input[data-key="Limit Price"]');
+    expect(limitPriceInput.length).toBe(1);
+  });
+  it('should render stop price input after changing order type to Stop Loss Order', () => {
+    const wrapper = mount(<TradePanel/>);
+    
+    // Open the menu
+    wrapper.find('#menu').simulate('click');
+
+    // Find 2nd option
+    const stopLossOrderOption = wrapper.find('#order-types ul').children().at(2).find('a');
+    expect(stopLossOrderOption.text()).toBe('Stop Loss Order');
+
+    // Click the limit order
+    stopLossOrderOption.simulate('click');
+
+    const stopPriceInput = wrapper.find('input[data-key="Stop Price"]');
+    expect(stopPriceInput.length).toBe(1);
+  });
+  it('should render stop price AND limit price inputs after changing order type to Stop Limit Order', () => {
+    const wrapper = mount(<TradePanel/>);
+    
+    // Open the menu
+    wrapper.find('#menu').simulate('click');
+
+    // Find 2nd option
+    const stopLimitOrderOption = wrapper.find('#order-types ul').children().at(3).find('a');
+    expect(stopLimitOrderOption.text()).toBe('Stop Limit Order');
+
+    // Click the limit order
+    stopLimitOrderOption.simulate('click');
+
+    const stopPriceInput = wrapper.find('input[data-key="Stop Price"]');
+    expect(stopPriceInput.length).toBe(1);
+
+    const limitPriceInput = wrapper.find('input[data-key="Limit Price"]');
+    expect(limitPriceInput.length).toBe(1);
+  });
   it.todo('should retain value for stock quantity upon changing order type');
   it.todo('should toggle menu off when clicked elsewhere');
   it.todo('should not accept non-numeric characters');

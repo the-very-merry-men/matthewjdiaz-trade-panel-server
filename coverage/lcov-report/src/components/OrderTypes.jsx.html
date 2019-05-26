@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/13</span>
+        <span class='fraction'>8/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>2/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>6/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">72.73% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>8/11</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,22 +92,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,9 +111,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,13 +132,13 @@
 import $ from 'jquery';
 &nbsp;
 class OrderTypes extends Component {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >    this.handleOutsideClick = this.handleOutsideClick.bind(this);</span>
+  constructor(props) {
+    super(props);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>mponentWillMount() {
-<span class="cstat-no" title="statement not covered" >    document.addEventListener('click', this.handleOutsideClick, false);</span>
+  componentWillMount() {
+    document.addEventListener('click', this.handleOutsideClick, false);
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  co</span>mponentWillUnmount() {
@@ -151,16 +151,16 @@ class OrderTypes extends Component {
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
-<span class="cstat-no" title="statement not covered" >    return (</span>
-      &lt;div id="order-types" ref={<span class="fstat-no" title="function not covered" >no</span>de =&gt; <span class="cstat-no" title="statement not covered" >this.node = node}</span>&gt;
+  render() {
+    return (
+      &lt;div id="order-types" ref={node =&gt; this.node = node}&gt;
         &lt;div className="header"&gt;
           &lt;div id="header-left"&gt;&lt;h3&gt;Order Type&lt;/h3&gt;&lt;/div&gt;
         &lt;/div&gt;
         &lt;ul&gt;
-          {this.props.orderStructure.map(<span class="fstat-no" title="function not covered" >(s</span>tructure, index) =&gt; <span class="cstat-no" title="statement not covered" >&lt;li key={index} className={this.props.currType === index ? 'active-left' : ''}&gt;&lt;strong&gt;&lt;a href="#" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            this.props.changeType(index);</span>
-<span class="cstat-no" title="statement not covered" >            $('#order-types').fadeOut('fast', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.props.showOrderTypes())</span>;</span>
+          {this.props.orderStructure.map((structure, index) =&gt; &lt;li key={index} className={this.props.currType === index ? 'active-left' : ''}&gt;&lt;strong&gt;&lt;a href="#" onClick={() =&gt; {
+            this.props.changeType(index);
+            $('#order-types').fadeOut('fast', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.props.showOrderTypes())</span>;
             }}&gt;{structure.type}&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;)}
         &lt;/ul&gt;
       &lt;/div&gt;
@@ -175,7 +175,7 @@ export default OrderTypes;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 24 2019 15:59:30 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat May 25 2019 18:22:59 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -62,7 +62,7 @@ class TradePanel extends Component {
   }
 
   changeTotal(shares) {
-    const price = this.state.data ? this.state.data[0].price : 0;
+    const price = this.state.data.length ? this.state.data[0].price : 0;
     this.setState({ cost: (price*shares).toFixed(2) });
   }
 
@@ -82,7 +82,7 @@ class TradePanel extends Component {
         <div className='main-container'>
           {this.state.orderStructure[this.state.currType].options.map(input => <Options changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
           <hr></hr>
-          <Options label={<strong>{"Estimated Cost"}</strong>} type="text" payload={`$${this.state.cost}`}/>
+          <Options label={<strong>{"Estimated Cost"}</strong>} dataKey="Estimated Cost" type="text" payload={`$${this.state.cost}`}/>
           <button id="review-order" href="#">Review Order</button>
         </div>
         {this.state.showOrderTypes ? <OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes}/> : null}

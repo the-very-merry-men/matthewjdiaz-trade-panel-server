@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">94.44% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/18</span>
+        <span class='fraction'>17/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">61.11% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/18</span>
+        <span class='fraction'>11/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">94.44% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/18</span>
+        <span class='fraction'>17/18</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,33 +88,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,34 +124,34 @@
 import $ from 'jquery';
 import Select from './Select.jsx';
 &nbsp;
-const validateInput = <span class="fstat-no" title="function not covered" >(e</span>, type, dataKey) =&gt; {
-  const regex = <span class="cstat-no" title="statement not covered" >/\d+\.?\d*/i;</span>
-  const input = <span class="cstat-no" title="statement not covered" >e.target.value;</span>
-  const match = <span class="cstat-no" title="statement not covered" >input.match(regex);</span>
-  const extract = <span class="cstat-no" title="statement not covered" >match ? match[0] : ``;</span>
-  const thisForm = <span class="cstat-no" title="statement not covered" >`#input-lg[data-key=\"${dataKey}\"]`;</span>
-<span class="cstat-no" title="statement not covered" >  $(thisForm).val(input ? type === 'currency' ? `$${extract}` : `${extract}` : ``);</span>
-<span class="cstat-no" title="statement not covered" >  $(thisForm).css({ color: type === 'digit' &amp;&amp; extract.includes('.') ? 'red' : '' });</span>
+const validateInput = (e, type, dataKey) =&gt; {
+  const regex = /\d+\.?\d*/i;
+  const input = e.target.value;
+  const match = input.match(regex);
+  const extract = match ? match[0] : <span class="branch-1 cbranch-no" title="branch not covered" >``;</span>
+  const thisForm = `#input-lg[data-key=\"${dataKey}\"]`;
+  $(thisForm).val(input ? type === 'currency' ? <span class="branch-0 cbranch-no" title="branch not covered" >`$${extract}` </span>: `${extract}` : <span class="branch-1 cbranch-no" title="branch not covered" >``)</span>;
+  $(thisForm).css({ color: type === 'digit' &amp;&amp; extract.includes('.') ? <span class="branch-0 cbranch-no" title="branch not covered" >'red' </span>: '' });
 }
 &nbsp;
-const renderSwitch = <span class="fstat-no" title="function not covered" >(t</span>ype, payload, dataKey, changeTotal) =&gt; {
-<span class="cstat-no" title="statement not covered" >  switch(type) {</span>
+const renderSwitch = (type, payload, dataKey, changeTotal) =&gt; {
+  switch(type) {
     case 'input':
-<span class="cstat-no" title="statement not covered" >      return &lt;input type="text" id="input-lg" data-key={dataKey} autoComplete="off" onChange={<span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        validateInput(e, payload ? 'currency' : 'digit', dataKey);</span>
-<span class="cstat-no" title="statement not covered" >        payload ? '' : changeTotal(e.target.value);</span>
+      return &lt;input type="text" id="input-lg" data-key={dataKey} autoComplete="off" onChange={e =&gt; {
+        validateInput(e, payload ? <span class="branch-0 cbranch-no" title="branch not covered" >'currency' </span>: 'digit', dataKey);
+        payload ? <span class="branch-0 cbranch-no" title="branch not covered" >'' </span>: changeTotal(e.target.value);
       }} placeholder={payload}&gt;&lt;/input&gt;
     case 'text':
-<span class="cstat-no" title="statement not covered" >      return &lt;strong&gt;{payload}&lt;/strong&gt;;</span>
+      return &lt;strong data-key={dataKey}&gt;{payload}&lt;/strong&gt;;
     case 'dropdown':
-<span class="cstat-no" title="statement not covered" >      return &lt;Select values={['Good for day', 'Good till Canceled']}/&gt;;</span>
-    default:
+      return &lt;Select values={['Good for day', 'Good till Canceled']}/&gt;;
+<span class="branch-3 cbranch-no" title="branch not covered" >    default:</span>
 <span class="cstat-no" title="statement not covered" >      return 'dunno lol'</span>
   }
 }
 &nbsp;
-const Options = <span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (
-<span class="cstat-no" title="statement not covered" >  &lt;div className="list-container"&gt;</span>
+const Options = (props) =&gt; (
+  &lt;div className="list-container"&gt;
     &lt;div className="box-left"&gt;{props.label}&lt;/div&gt;
     &lt;div className="box-right"&gt;{renderSwitch(props.type, props.payload, props.dataKey, props.changeTotal)}&lt;/div&gt;
   &lt;/div&gt;
@@ -163,7 +163,7 @@ export default Options;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 24 2019 15:59:30 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat May 25 2019 18:22:59 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

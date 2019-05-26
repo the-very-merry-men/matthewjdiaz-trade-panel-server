@@ -119,7 +119,32 @@ describe('Trade panel behavior', () => {
     const limitPriceInput = wrapper.find('input[data-key="Limit Price"]');
     expect(limitPriceInput.length).toBe(1);
   });
-  it.todo('should retain value for stock quantity upon changing order type');
+  it('should retain value for stock quantity upon changing order type', async done => {
+    const wrapper = await mount(<TradePanel />);
+    await wrapper.instance().fetchData();
+
+    // Must be a string
+    const shares = '2';
+
+    // Change amount of shares
+    const sharesInputInitial = wrapper.find(`[data-key="Shares"]`);
+    sharesInputInitial.simulate('change', { target: { value: shares }});
+    console.log(sharesInputInitial.at(0).instance().value)
+
+    // Open the menu
+    wrapper.find('#menu').simulate('click');
+
+    // Find 2nd option
+    const stopLimitOrderOption = wrapper.find('#order-types ul').children().at(3).find('a');
+    expect(stopLimitOrderOption.text()).toBe('Stop Limit Order');
+
+    // Click the limit order
+    stopLimitOrderOption.simulate('click');
+
+    const sharesInputLatter = wrapper.find(`[data-key="Shares"]`);
+    // expect(sharesInputLatter.props().value).toBe(shares);
+
+  });
   it.todo('should toggle menu off when clicked elsewhere');
   it.todo('should not accept non-numeric characters');
   it.todo('should accept decimal characters for stop and limit price');

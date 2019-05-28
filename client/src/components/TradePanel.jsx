@@ -3,6 +3,7 @@ import OrderTypes from './OrderTypes.jsx';
 import orderStructure from './orderStructure.jsx';
 import Options from './Options.jsx';
 import Icon from './Icon.jsx';
+import PropTypes from 'prop-types';
 
 class TradePanel extends Component {
   constructor(props) {
@@ -92,5 +93,8 @@ class TradePanel extends Component {
     );
   }
 }
+
+TradePanel.propTypes = {};
+TradePanel.defaultProps = {};
 
 export default TradePanel;

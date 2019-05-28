@@ -12,7 +12,7 @@ const validateInput = (e, type, dataKey) => {
   $(thisForm).css({ color: type === 'digit' && extract.includes('.') ? 'red' : '' });
 }
 
-const renderSwitch = (type, payload, dataKey, changeTotal) => {
+const renderSwitch = (type, payload, dataKey, changeTotal, theme) => {
   switch(type) {
     case 'input':
       return <input type="text" id="input-lg" data-key={dataKey} autoComplete="off" onChange={e => {
@@ -22,7 +22,7 @@ const renderSwitch = (type, payload, dataKey, changeTotal) => {
     case 'text':
       return <strong data-key={dataKey}>{payload}</strong>;
     case 'dropdown':
-      return <Select values={['Good for day', 'Good till Canceled']}/>;
+      return <Select theme={theme} values={['Good for day', 'Good till Canceled']}/>;
     default:
       return 'dunno lol'
   }
@@ -31,7 +31,7 @@ const renderSwitch = (type, payload, dataKey, changeTotal) => {
 const Options = (props) => (
   <div className="list-container">
     <div className="box-left">{props.label}</div>
-    <div className="box-right">{renderSwitch(props.type, props.payload, props.dataKey, props.changeTotal)}</div>
+    <div className="box-right">{renderSwitch(props.type, props.payload, props.dataKey, props.changeTotal, props.theme)}</div>
   </div>
 );
 

@@ -15,7 +15,8 @@ class TradePanel extends Component {
       orderStructure,
       showOrderTypes: false,
       currType: 0,
-      cost: 0
+      cost: 0,
+      theme: { main: '#21ce99', accent: '#0fecaa' }
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -68,8 +69,7 @@ class TradePanel extends Component {
   }
 
   render() {
-    const { stock, data, orderStructure, showOrderTypes, currType, cost } = this.state;
-  
+    const { stock, data, orderStructure, showOrderTypes, currType, cost, theme } = this.state;
     return (
       <div className="main-container">
         <div className='header'>
@@ -83,7 +83,7 @@ class TradePanel extends Component {
           </div>
         </div>
         <div className='main-container'>
-          {orderStructure[currType].options.map(input => <Options changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
+          {orderStructure[currType].options.map(input => <Options theme={theme} changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
           <hr></hr>
           <Options label={<strong>{"Estimated Cost"}</strong>} dataKey="Estimated Cost" type="text" payload={`$${cost}`}/>
           <button id="review-order" href="#">Review Order</button>

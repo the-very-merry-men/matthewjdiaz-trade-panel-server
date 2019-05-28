@@ -1,5 +1,4 @@
 import React from 'react';
-import 'isomorphic-fetch';
 import TradePanel from '../client/src/components/TradePanel.jsx';
 import { shallow, render, mount } from 'enzyme';
 
@@ -53,17 +52,17 @@ describe('Trade panel behavior', () => {
     await wrapper.instance().fetchData();
 
     // Must be a string
-    const shares = '2';
+    const value = '2';
 
     // Change amount of shares
-    wrapper.find(`[data-key="Shares"]`).simulate('change', { target: { value: shares }});
+    wrapper.find(`[data-key="Shares"]`).simulate('change', { target: { value }});
 
     // Compare the updated cost
     const estimatedCost = wrapper.find('strong[data-key="Estimated Cost"]').text();
     mockResponse.json().then(response => {
       const match = estimatedCost.match(/\$(\d+.\d+)/i) ;
       const extracted = match ? +match[1] : null;
-      expect(extracted).toBe(shares * response[0].price);
+      expect(extracted).toBe(value * response[0].price);
       done();
     });
   });
@@ -82,7 +81,7 @@ describe('Trade panel behavior', () => {
     limitOrderOption.simulate('click');
 
     const limitPriceInput = wrapper.find('input[data-key="Limit Price"]');
-    expect(limitPriceInput.length).toBe(1);
+    expect(limitPriceInput).toHaveLength(1);
   });
   it('should render stop price input after changing order type to Stop Loss Order', () => {
     const wrapper = mount(<TradePanel/>);
@@ -98,7 +97,7 @@ describe('Trade panel behavior', () => {
     stopLossOrderOption.simulate('click');
 
     const stopPriceInput = wrapper.find('input[data-key="Stop Price"]');
-    expect(stopPriceInput.length).toBe(1);
+    expect(stopPriceInput).toHaveLength(1);
   });
   it('should render stop price AND limit price inputs after changing order type to Stop Limit Order', () => {
     const wrapper = mount(<TradePanel/>);
@@ -114,40 +113,9 @@ describe('Trade panel behavior', () => {
     stopLimitOrderOption.simulate('click');
 
     const stopPriceInput = wrapper.find('input[data-key="Stop Price"]');
-    expect(stopPriceInput.length).toBe(1);
+    expect(stopPriceInput).toHaveLength(1);
 
     const limitPriceInput = wrapper.find('input[data-key="Limit Price"]');
-    expect(limitPriceInput.length).toBe(1);
+    expect(limitPriceInput).toHaveLength(1);
   });
-  it('should retain value for stock quantity upon changing order type', async done => {
-    const wrapper = await mount(<TradePanel />);
-    await wrapper.instance().fetchData();
-
-    // Must be a string
-    const shares = '2';
-
-    // Change amount of shares
-    const sharesInputInitial = wrapper.find(`[data-key="Shares"]`);
-    sharesInputInitial.simulate('change', { target: { value: shares }});
-    console.log(sharesInputInitial.at(0).instance().value)
-
-    // Open the menu
-    wrapper.find('#menu').simulate('click');
-
-    // Find 2nd option
-    const stopLimitOrderOption = wrapper.find('#order-types ul').children().at(3).find('a');
-    expect(stopLimitOrderOption.text()).toBe('Stop Limit Order');
-
-    // Click the limit order
-    stopLimitOrderOption.simulate('click');
-
-    const sharesInputLatter = wrapper.find(`[data-key="Shares"]`);
-    // expect(sharesInputLatter.props().value).toBe(shares);
-
-  });
-  it.todo('should toggle menu off when clicked elsewhere');
-  it.todo('should not accept non-numeric characters');
-  it.todo('should accept decimal characters for stop and limit price');
-  it.todo('should turn red upon submitting decimal value for share quantity');
-  it.todo('should close menu upon clicking anywhere outside the menu');
 });

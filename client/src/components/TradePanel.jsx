@@ -67,25 +67,27 @@ class TradePanel extends Component {
   }
 
   render() {
+    const { stock, data, orderStructure, showOrderTypes, currType, cost } = this.state;
+  
     return (
       <div className="main-container">
         <div className='header'>
           <div id='header-left'>
-            <h3>Buy {this.state.stock.toUpperCase()}</h3>
+            <h3>Buy {stock.toUpperCase()}</h3>
           </div>
-          <div id='header-right' className={this.state.showOrderTypes ? 'active-bottom' : ''}>
-            <svg id='menu' ref={node => this.node = node} className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes}>
+          <div id='header-right' className={showOrderTypes ? 'active-bottom' : ''}>
+            <svg id='menu' ref={node => this.node = node} className={showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes}>
               <Icon/>
             </svg>
           </div>
         </div>
         <div className='main-container'>
-          {this.state.orderStructure[this.state.currType].options.map(input => <Options changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
+          {orderStructure[currType].options.map(input => <Options changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
           <hr></hr>
-          <Options label={<strong>{"Estimated Cost"}</strong>} dataKey="Estimated Cost" type="text" payload={`$${this.state.cost}`}/>
+          <Options label={<strong>{"Estimated Cost"}</strong>} dataKey="Estimated Cost" type="text" payload={`$${cost}`}/>
           <button id="review-order" href="#">Review Order</button>
         </div>
-        {this.state.showOrderTypes ? <OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes}/> : null}
+        {showOrderTypes && <OrderTypes orderStructure={orderStructure} currType={currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes}/>}
       </div>
     );
   }

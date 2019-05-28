@@ -18,10 +18,12 @@
     "jquery": "^3.4.1",
     "mysql2": "^1.6.5",
     "path": "^0.12.7",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "request": "^2.88.0",
-    "sequelize": "^5.8.6"
+    "sequelize": "^5.8.6",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.4.5",
@@ -36,11 +38,14 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "jest": "^24.8.0",
+    "sinon": "^7.3.2",
     "webpack": "^2.2.1",
     "webpack-cli": "^3.3.2"
   },
   "jest": {
-    "collectCoverageFrom": ["<rootDir>/client/src/**/*.jsx"],
+    "collectCoverageFrom": [
+      "<rootDir>/client/src/**/*.jsx"
+    ],
     "coverageDirectory": "<rootDir>/coverage",
     "setupFiles": [
       "<rootDir>/test/setup.js"

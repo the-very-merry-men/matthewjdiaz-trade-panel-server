@@ -3,6 +3,7 @@ import OrderTypes from './OrderTypes.jsx';
 import orderStructure from './orderStructure.jsx';
 import Options from './Options.jsx';
 import Icon from './Icon.jsx';
+import PropTypes from 'prop-types';
 
 class TradePanel extends Component {
   constructor(props) {
@@ -13,12 +14,18 @@ class TradePanel extends Component {
       data: [],
       orderStructure,
       showOrderTypes: false,
-      currType: 0
+      currType: 0,
+      cost: 0
     };
-  }
 
+    this.fetchData = this.fetchData.bind(this);
+    this.showOrderTypes = this.showOrderTypes.bind(this);
+    this.changeType = this.changeType.bind(this);
+    this.payloadSwitch = this.payloadSwitch.bind(this);
+    this.changeTotal = this.changeTotal.bind(this); 
+  }
+  
   componentDidMount() {
-    console.log(this.state.orderStructure);
     let match = window.location.pathname.match(/\/stocks\/(\w+)/i);
     const stock = match ? match[1] : null;
     if (stock) {
@@ -46,35 +53,48 @@ class TradePanel extends Component {
     const price = this.state.data.length ? `$${this.state.data[0].price}` : null;
     switch(label) {
       case 'Market Price':
-        return <div id="price">{price}</div>;
       case 'Limit Price':
         return price;
+      case 'Stop Price':
+        return `$0.00`;
       default:
         return 0;
     }
   }
 
+  changeTotal(shares) {
+    const price = this.state.data.length ? this.state.data[0].price : 0;
+    this.setState({ cost: (price*shares).toFixed(2) });
+  }
+
   render() {
+    const { stock, data, orderStructure, showOrderTypes, currType, cost } = this.state;
+  
     return (
-      <div>
-        {this.state.showOrderTypes ? <OrderTypes orderStructure={this.state.orderStructure} currType={this.state.currType} changeType={this.changeType.bind(this)} showOrderTypes={this.showOrderTypes.bind(this)}/> : null}
+      <div className="main-container">
         <div className='header'>
           <div id='header-left'>
-            <h3>Buy {this.state.stock.toUpperCase()}</h3>
+            <h3>Buy {stock.toUpperCase()}</h3>
           </div>
-          <div id='header-right' className={this.state.showOrderTypes ? 'active-bottom' : ''}>
-            <svg id='menu' className={this.state.showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes.bind(this)}>
+          <div id='header-right' className={showOrderTypes ? 'active-bottom' : ''}>
+            <svg id='menu' ref={node => this.node = node} className={showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes}>
               <Icon/>
             </svg>
           </div>
         </div>
         <div className='main-container'>
-          {this.state.orderStructure[this.state.currType].options.map(input => <Options key={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
-          <Options label="Commissions" type="text" payload="$0.00"/>
+          {orderStructure[currType].options.map(input => <Options changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
+          <hr></hr>
+          <Options label={<strong>{"Estimated Cost"}</strong>} dataKey="Estimated Cost" type="text" payload={`$${cost}`}/>
+          <button id="review-order" href="#">Review Order</button>
         </div>
+        {showOrderTypes && <OrderTypes orderStructure={orderStructure} currType={currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes}/>}
       </div>
     );
   }
 }
+
+TradePanel.propTypes = {};
+TradePanel.defaultProps = {};
 
 export default TradePanel;

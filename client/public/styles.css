@@ -8,10 +8,10 @@
   --emphasized-accent:  #0fecaa;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'dinpro';
   src: url('fonts/dinpro.otf');
-}
+} */ 
 
 body {
   font-family: 'dinpro';
@@ -194,7 +194,6 @@ button#review-order:hover {
 
 option {
   background-color: white;
-
 }
 
 option:hover {
@@ -206,7 +205,7 @@ option:hover {
   width: 100%;
 }
 
-#values {
+/* #values {
   padding: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -227,7 +226,7 @@ option:hover {
   padding: 0 10px;
   font-size: 14px;
   margin: 0;
-}
+} */
 
 .highlighted {
   background: var(--main-accent);
@@ -239,12 +238,12 @@ option:hover {
   border-color: #d6d6d6;
 }
 
-#dd.dd-activated {
+/* #dd.dd-activated {
   background: white;
   border-color: var(--emphasized-accent);
-}
+} */
 
-#dd {
+/* #dd {
   text-align: left;
   font-size: 13px;
   background: #fafafa;
@@ -254,4 +253,4 @@ option:hover {
   line-height: 34px;
   padding: 0 13px;
   transition: border-color 0.1s ease-in;
-}
+} */

@@ -36,7 +36,7 @@ class TradePanel extends Component {
   }
 
   fetchData() {
-    fetch(`http://localhost:3001/api/stocks/${this.state.stock}/price`)
+    fetch(`/api/stocks/${this.state.stock}/price`)
       .then(res => res.json())
       .then(data => this.setState({ data }))
       .catch(err => console.log(err));

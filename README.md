@@ -5,10 +5,6 @@
 1. [Related Projects](#related-projects)
 1. [Installing Dependencies](#installing-dependencies)
 1. [API Requests](#api-requests)
-1. [Create](#Create)
-1. [Read](#Read)
-1. [Update](#Update)
-1. [Delete](#Delete)
 
 ## Related Projects
 
@@ -18,13 +14,15 @@
   > proxy
   - https://github.com/the-very-merry-men/matthewjdiaz-trade-panel-proxy
 
-### Installing Dependencies
+
+## Installing Dependencies
 
 From within the root directory:
 ```sh
 npm install
 ```
 > edit server/database/index.js file by adding your MySQL password
+
 to seed database run the following
 ```
 npm run seed
@@ -39,33 +37,35 @@ npm start
 
 
 # API Requests
-## Create
-route - /POST
-input - name AND ticker AND price
-output - none
-description - create a new stock option
+### Create
+- route - /POST
+- input - name AND ticker AND price
+- output - none
+- description - create a new stock option
 
-## Read
-route - /GET
-input - id OR name OR ticker
-output - id AND name AND ticker AND price
-description - search for a stock option
+### Read
+- route - /GET
+- input - id OR name OR ticker
+- output - id AND name AND ticker AND price
+- description - search for a stock option
 
-## Update
-route - /PUT
-input - id OR name OR ticker
-output - none
-description - change a stocks name, ticker, or price
+### Update
+- route - /PUT
+- input - id OR name OR ticker
+- output - none
+- description - change a stocks name, ticker, or price
 
-## Delete
-route - /DELETE
-input - id OR name OR ticker
-output - none
-description - delete stock
+### Delete
+- route - /DELETE
+- input - id OR name OR ticker
+- output - none
+- description - delete stock
     
 > example table object:
-> {id: 43,
->   name: 'Google',
->   ticker: 'GOOG',
->   price: 1,054.06
-> }
+```
+{id: 43,
+  name: 'Google',
+  ticker: 'GOOG',
+  price: 1,054.06
+}
+```

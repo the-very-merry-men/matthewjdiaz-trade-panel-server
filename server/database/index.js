@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
 // CONNECT TO DATABASE
-module.exports = new Sequelize('mysql://root:example@database:3306/trade_panel', {
+module.exports = new Sequelize('front_end', 'root', '', {
   dialect: 'mysql', dialectOptions: {
-      supportBigNumbers: true
+    supportBigNumbers: true
   }
 });

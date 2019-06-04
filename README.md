@@ -23,17 +23,16 @@ npm install
 ```
 > edit server/database/index.js file by adding your MySQL password
 
-to seed database run the following
+to seed database:
 ```
 npm run seed
 ```
 
-to create bundle.js and start the server run the following
+to create bundle.js and start the server:
 ```
 npm run build
 npm start
 ```
-> to create bundle.js in watch mode run npm run react-dev
 
 
 # API Requests
@@ -61,9 +60,10 @@ npm start
 - output - none
 - description - delete stock
     
-> example table object:
+> example database object:
 ```
-{id: 43,
+{
+  id: 43,
   name: 'Google',
   ticker: 'GOOG',
   price: 1,054.06

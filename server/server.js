@@ -7,7 +7,7 @@ const path = require('path');
 const controllers = require('./controllers');
 
 const app = express();
-const PORT = 3001;
+const PORT = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/../client/public')));

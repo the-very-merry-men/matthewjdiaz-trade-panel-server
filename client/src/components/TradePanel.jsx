@@ -10,6 +10,8 @@ class TradePanel extends Component {
     super(props);
 
     this.state = {
+      // TODO - componentDidMount() change stock to select * from table limit 1 rand();
+      //// this should randomize the stock page on loadin
       stock: 'inst',
       data: [],
       orderStructure,
@@ -23,14 +25,14 @@ class TradePanel extends Component {
     this.showOrderTypes = this.showOrderTypes.bind(this);
     this.changeType = this.changeType.bind(this);
     this.payloadSwitch = this.payloadSwitch.bind(this);
-    this.changeTotal = this.changeTotal.bind(this); 
+    this.changeTotal = this.changeTotal.bind(this);
   }
-  
+
   componentDidMount() {
     let match = window.location.pathname.match(/\/stocks\/(\w+)/i);
     const stock = match ? match[1] : null;
     if (stock) {
-      return this.setState({stock}, () => this.fetchData());
+      return this.setState({ stock }, () => this.fetchData());
     }
     this.fetchData();
   }
@@ -41,9 +43,9 @@ class TradePanel extends Component {
       .then(data => this.setState({ data }))
       .catch(err => console.log(err));
   }
-  
+
   showOrderTypes() {
-    this.setState( state => ({ showOrderTypes: !state.showOrderTypes }));
+    this.setState(state => ({ showOrderTypes: !state.showOrderTypes }));
   }
 
   changeType(currType) {
@@ -52,7 +54,7 @@ class TradePanel extends Component {
 
   payloadSwitch(label) {
     const price = this.state.data.length ? `$${this.state.data[0].price}` : null;
-    switch(label) {
+    switch (label) {
       case 'Market Price':
       case 'Limit Price':
         return price;
@@ -65,7 +67,7 @@ class TradePanel extends Component {
 
   changeTotal(shares) {
     const price = this.state.data.length ? this.state.data[0].price : 0;
-    this.setState({ cost: (price*shares).toFixed(2) });
+    this.setState({ cost: (price * shares).toFixed(2) });
   }
 
   render() {
@@ -78,17 +80,17 @@ class TradePanel extends Component {
           </div>
           <div id='header-right' className={showOrderTypes ? 'active-bottom' : ''}>
             <svg id='menu' ref={node => this.node = node} className={showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes}>
-              <Icon/>
+              <Icon />
             </svg>
           </div>
         </div>
         <div className='main-container'>
-          {orderStructure[currType].options.map(input => <Options theme={theme} changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/>)}
+          {orderStructure[currType].options.map(input => <Options theme={theme} changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)} />)}
           <hr></hr>
-          <Options label={<strong>{"Estimated Cost"}</strong>} dataKey="Estimated Cost" type="text" payload={`$${cost}`}/>
+          <Options label={<strong>{"Estimated Cost"}</strong>} dataKey="Estimated Cost" type="text" payload={`$${cost}`} />
           <button id="review-order" href="#">Review Order</button>
         </div>
-        {showOrderTypes && <OrderTypes orderStructure={orderStructure} currType={currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes}/>}
+        {showOrderTypes && <OrderTypes orderStructure={orderStructure} currType={currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes} />}
       </div>
     );
   }

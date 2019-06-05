@@ -43,10 +43,10 @@ npm start
 - description - create a new stock option
 
 ### Read
-- route - /GET
-- input - id OR name OR ticker
+- input - ticker
 - output - id AND name AND ticker AND price
 - description - search for a stock option
+>  /GET/ticker/:ticker
 
 ### Update
 - route - /PUT
@@ -60,7 +60,8 @@ npm start
 - output - none
 - description - delete stock
     
-> example database object:
+##Examples
+> /GET/GOOG
 ```
 {
   id: 43,
@@ -69,3 +70,19 @@ npm start
   price: 1,054.06
 }
 ```
+
+
+id
+name
+ticker
+price
+
+buy_rating
+rh_owners
+ceo
+market_cap - total shares * price
+employees
+pe_ratio - current market price / earning per share (EPS)
+div_yield - dividend per share / price per share
+createdAt
+updatedAt

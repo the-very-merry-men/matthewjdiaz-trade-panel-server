@@ -7,7 +7,6 @@ const price = () => {
   return (Math.random() * 2000).toFixed(2);
 }
 
-// TOY PROBLEM create
 const ticker = (length) => {
   let result = '';
   const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

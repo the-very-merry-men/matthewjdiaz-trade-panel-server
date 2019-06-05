@@ -22,7 +22,7 @@ From within the root directory:
 npm install
 ```
 > edit server/database/index.js file by adding your MySQL password
-
+> note: creates 10 million entries and requires 4g of memory
 to seed database:
 ```
 npm run seed

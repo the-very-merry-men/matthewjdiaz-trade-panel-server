@@ -7,8 +7,10 @@
     "start": "node server/server.js",
     "build": "webpack -d",
     "react-dev": "webpack -d --watch",
-    "seed": "node --max-old-space-size=4096 ./server/database/SDCseed.js",
-    "test": "jest --coverage --verbose"
+    "seed-stocks": "node --max-old-space-size=4096 ./server/database/SDCseedStocks.js",
+    "seed-users": "node --max-old-space-size=4096 ./server/database/SDCseedUsers.js",
+    "test": "jest --coverage --verbose",
+    "postgres": "nodemon ./server/postgresServer.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,7 @@
     "jquery": "^3.4.1",
     "mysql2": "^1.6.5",
     "path": "^0.12.7",
+    "pg": "^7.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

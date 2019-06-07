@@ -1,0 +1,53 @@
+id,name,ticker,current_price,average_price,week52high,week52low
+1,Odie,ODIE,1015.74,361.85,584.1,139.59
+2,Zaria,ZARI,786.06,566.77,955.35,178.2
+
+
+DELETE FROM stocks
+WHERE id < 10000001;
+
+
+ALTER TABLE stocks
+ADD COLUMN week52low numeric(6,2);
+
+ALTER TABLE stocks 
+DROP COLUMN week52low;
+
+ALTER TABLE users
+ALTER COLUMN username TYPE VARCHAR (20);
+
+
+COPY stocks(id,name,ticker,current_price,average_price,week52high,week52low) 
+FROM '/Users/carforce/code/training/hackreactor/SDC/trade-panel/stocks.csv' DELIMITER ',' CSV HEADER;
+
+
+9999996,Kareem,KARE,446.49,803.88,1433.52,174.24
+9999997,Kennith,KENN,166.32,321.25,509.85,132.66
+9999998,Viola,VIOL,606.87,772.70,1372.14,173.25
+9999999,Oswald,OSWA,727.65,586.08,980.1,192.06
+10000000,Franco,FRAN,200.97,455.89,727.65,184.14
+
+select * from stocks where name = 'Kareem' and current_price = 803.88;
+select * from stocks where name = 'Kennith' and current_price = 166.32;
+select * from stocks where name = 'Viola' and current_price = 606.87;
+select * from stocks where name = 'Oswald' and current_price = 727.65;
+select * from stocks where name = 'Franco' and current_price = 200.97;
+
+CREATE TABLE stocks(
+   id serial PRIMARY KEY,
+   name VARCHAR (11) NOT NULL,
+   ticker VARCHAR (4) NOT NULL,
+   current_price NUMERIC(6, 2) NOT NULL
+ );
+
+CREATE TABLE users(
+  id serial Primary Key,
+  username VARCHAR (11) NOT NULL,
+  balance NUMERIC(11, 2)
+);
+
+
+ ALTER TABLE stocks ALTER COLUMN current_price SET NOT NULL;
+
+
+ select * from stocks where id = 3500;

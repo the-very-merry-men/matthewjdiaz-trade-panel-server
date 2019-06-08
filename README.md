@@ -82,15 +82,15 @@ npm start
 - output - 
   if(new_quantity > quantity)
     > UPDATE stocks_held SET quantity = ${new_quantity}
-    > WHERE stock_name = ${stock_name} AND user_id = ${username};
+    > WHERE stock_id = ${stock_name} AND user_id = ${username};
   else
     > UPDATE stocks_held SET quantity = ${quantity - new_quantity}
-    > WHERE stock_name = ${stock_name} AND user_id = ${username};
+    > WHERE stock_id = ${stock_name} AND user_id = ${username};
 - description - update the amount of a certain stocks a user has
 ### Delete
 - route - /DELETE/${username}/stocks_held/
 - input - username, stock_id
-- output - DELETE FROM stocks_held WHERE stock_id = ${stock_id};
+- output - DELETE FROM stocks_held WHERE stock_id = ${stock_id} AND username = ${username};
 - description - delete stock
 
 ## stop_loss
@@ -107,16 +107,16 @@ npm start
 - input - username
 - output - SELECT * FROM stop_loss WHERE user_id = ${username};
 - description - display a users current stop losses
-### Update-
+### Update
 - route - /PUT/${username}/stop_loss/
 - input - username, stockName, new_price AND/OR new_quantity AND/OR new_date
 - output - 
   > UPDATE stop_loss SET quantity = ${new_quantity} AND stop_price = ${new_price} AND exp_date = ${new_date}
-  > WHERE stock_name = ${stock_name} AND user_id = ${username};
+  > WHERE stock_id = ${stock_name} AND user_id = ${username};
 - description - update a users stop loss quantity or date
 ### Delete
 - route - /DELETE/${username}/stop_loss/
 - input - username, stock_id
-- output - DELETE FROM stop_loss WHERE username = ${username} AND stock_id = ${stock_id};
+- output - DELETE FROM stop_loss WHERE user_id = ${username} AND stock_id = ${stock_id};
 - description - delete a users stop loss
 

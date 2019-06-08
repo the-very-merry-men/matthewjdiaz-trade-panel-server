@@ -7,8 +7,11 @@
     "start": "node server/server.js",
     "build": "webpack -d",
     "react-dev": "webpack -d --watch",
-    "seed-stocks": "node --max-old-space-size=4096 ./server/database/SDCseedStocks.js",
-    "seed-users": "node --max-old-space-size=4096 ./server/database/SDCseedUsers.js",
+    "csv-stocks": "node --max-old-space-size=4096 ./server/database/SDCseedStocks.js",
+    "csv-users": "node --max-old-space-size=4096 ./server/database/SDCseedUsers.js",
+    "csv-stocks-held": "node --max-old-space-size=4096 ./server/database/SDCseedStocksHeld.js",
+    "csv-stop-loss": "node --max-old-space-size=4096 ./server/database/SDCseedStopLoss.js",
+    "seed-psql": "psql -f seedPostgres.sql trade_panel",
     "test": "jest --coverage --verbose",
     "postgres": "nodemon ./server/postgresServer.js"
   },

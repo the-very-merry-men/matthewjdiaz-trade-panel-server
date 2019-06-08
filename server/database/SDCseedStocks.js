@@ -35,6 +35,6 @@ const dataGen = () => {
 
 dataGen();
 
-//////////////   -      create stocks.csv by running "npm run seed-stocks"      -   /////////////////
+//////////////   -      create stocks.csv by running "npm run csv-stocks"      -   /////////////////
 // COPY stocks(id,name,ticker,current_price,average_price,week52high,week52low) 
 // FROM '/Users/carforce/code/training/hackreactor/SDC/trade-panel/stocks.csv' DELIMITER ',' CSV HEADER;

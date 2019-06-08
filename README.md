@@ -50,7 +50,7 @@ npm start
 ### Update
 - route - /PUT/${username}/
 - input - username, accountBalance
-- output - UPDATE users SET acc_bal = ${accountBalance} WHERE username = ${username};
+- output - UPDATE users SET balance = ${accountBalance} WHERE username = ${username};
 - description - update a users balance
 ### Delete
 - route - /DELETE/${username}/
@@ -67,7 +67,7 @@ npm start
     > INSERT INTO stocks_held(user_id, stock_id, quantity)
     > VALUES (${username}, ${stockName}, ${amountBought});
   AND => /PUT/${username}/
-    > UPDATE users SET acc_bal = ${acc_bal - (amountBought * currentPrice)}
+    > UPDATE users SET balance = ${acc_bal - (amountBought * currentPrice)}
     > WHERE username = ${username};
 - description - add purchased stocks to a users profile AND updates their account balance if they have enough money
 ### Read
@@ -90,7 +90,7 @@ npm start
 ### Delete
 - route - /DELETE/${username}/stocks_held/
 - input - username, stock_id
-- output - DELETE FROM stocks_held WHERE stock_id = ${stock_id} AND username = ${username};
+- output - DELETE FROM stocks_held WHERE stock_id = ${stock_id} AND user_id = ${username};
 - description - delete stock
 
 ## stop_loss
@@ -111,7 +111,7 @@ npm start
 - route - /PUT/${username}/stop_loss/
 - input - username, stockName, new_price AND/OR new_quantity AND/OR new_date
 - output - 
-  > UPDATE stop_loss SET quantity = ${new_quantity} AND stop_price = ${new_price} AND exp_date = ${new_date}
+  > UPDATE stop_loss SET quantity = ${new_quantity}, stop_price = ${new_price}, exp_date = ${new_date}
   > WHERE stock_id = ${stock_name} AND user_id = ${username};
 - description - update a users stop loss quantity or date
 ### Delete
@@ -119,4 +119,3 @@ npm start
 - input - username, stock_id
 - output - DELETE FROM stop_loss WHERE user_id = ${username} AND stock_id = ${stock_id};
 - description - delete a users stop loss
-

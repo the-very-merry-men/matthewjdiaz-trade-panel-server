@@ -32,7 +32,7 @@ SELECT setval('stocks_held_id_seq', COALESCE((SELECT MAX(id)+1 FROM stocks_held)
 
 CREATE TABLE stop_loss(
   id serial Primary Key,
-  user_id VARCHAR (20) NOT NULL,
+  user_id INTEGER NOT NULL,
   stock_id INTEGER NOT NULL,
   stop_price NUMERIC(6, 2) NOT NULL,
   quantity INTEGER NOT NULL,
@@ -62,9 +62,9 @@ INSERT INTO table(column1, column2)
 VALUES (value1, value2);
 
 
-//////////// TESTS /////////////
+//////////// TESTS ///////////// (all tests are two passes, one fail)
 
-//// users //// all tests are two passes, one fail
+//// users //// 
 CREATE
 INSERT INTO users(username, balance, stocks_held, stop_loss) VALUES ('newUser1', 1234.56, false, false);
 INSERT INTO users(username, balance, stocks_held, stop_loss) VALUES ('newUser2', 1234.56, false, false);
@@ -76,23 +76,23 @@ SELECT * FROM users WHERE username = 'jeffday90';
 SELECT * FROM users WHERE username = '123';
 
 UPDATE
-UPDATE users SET acc_bal = 99999 WHERE username = 'matthewjdiaz1';
-UPDATE users SET acc_bal = 88888 WHERE username = 'jeffday90';
-UPDATE users SET acc_bal = 0 WHERE username = '123';
+UPDATE users SET balance = 99999 WHERE username = 'matthewjdiaz1';
+UPDATE users SET balance = 88888 WHERE username = 'jeffday90';
+UPDATE users SET balance = 0 WHERE username = '123';
 
 DELETE
 DELETE FROM users WHERE username = 'matthewjdiaz1';
 DELETE FROM users WHERE username = 'jeffday90';
 DELETE FROM users WHERE username = '123';
 
-//// stocks_held //// all tests are two passes, one fail
+//// stocks_held ////
 CREATE
 INSERT INTO stocks_held(user_id, stock_id, quantity) VALUES (0, 875456, 10);
-UPDATE users SET acc_bal = 5555 WHERE username = 'matthewjdiaz1';
+UPDATE users SET balance = 5555 WHERE username = 'matthewjdiaz1';
 INSERT INTO stocks_held(user_id, stock_id, quantity) VALUES (1, 9999995, 0);
-UPDATE users SET acc_bal = 999999 WHERE username = 'jeffday90';
+UPDATE users SET balance = 999999 WHERE username = 'jeffday90';
 INSERT INTO stocks_held(user_id, stock_id, quantity) VALUES (99, 0, 0);
-UPDATE users SET acc_bal = 5555 WHERE username = '123';
+UPDATE users SET balance = 5555 WHERE username = '123';
 
 READ
 SELECT * FROM stocks_held WHERE user_id = 1;
@@ -105,9 +105,9 @@ UPDATE stocks_held SET quantity = 99999 WHERE stock_id = 9999999 AND user_id = 1
 UPDATE stocks_held SET quantity = 123 WHERE stock_id = 9999999 AND user_id = 99;
 
 DELETE
-DELETE FROM stocks_held WHERE stock_id = 12 AND username = 0;
-DELETE FROM stocks_held WHERE stock_id = 9999999 AND username = 1;
-DELETE FROM stocks_held WHERE stock_id = 0 AND username = 99;
+DELETE FROM stocks_held WHERE stock_id = 12 AND user_id = 0;
+DELETE FROM stocks_held WHERE stock_id = 9999999 AND user_id = 1;
+DELETE FROM stocks_held WHERE stock_id = 0 AND user_id = 99;
 
 //// stop_loss ////
 CREATE
@@ -121,11 +121,11 @@ SELECT * FROM stop_loss WHERE user_id = 1;
 SELECT * FROM stop_loss WHERE user_id = 99;
 
 UPDATE
-UPDATE stop_loss SET quantity = 10 AND stop_price = 860 AND exp_date = '2019-08-22 19:10:25-07'
+UPDATE stop_loss SET quantity = 10, stop_price = 860, exp_date = '2019-08-22 19:10:25-07'
 WHERE stock_id = 867203 AND user_id = 0;
-UPDATE stop_loss SET quantity = 100 AND stop_price = 600 AND exp_date = '2019-08-22 19:10:25-07'
+UPDATE stop_loss SET quantity = 100, stop_price = 600, exp_date = '2019-08-22 19:10:25-07'
 WHERE stock_id = 9999999 AND user_id = 1;
-UPDATE stop_loss SET quantity = 10 AND stop_price = 860 AND exp_date = '2019-08-22 19:10:25-07'
+UPDATE stop_loss SET quantity = 10, stop_price = 860, exp_date = '2019-08-22 19:10:25-07'
 WHERE stock_id = 867203 AND user_id = 2;
 
 DELETE

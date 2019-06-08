@@ -63,7 +63,7 @@ npm start
 - routes - /POST/${username}/stocks_held/
 - description - add purchased stocks to a users profile AND updates their account balance if they have enough money
 - input - username, accountBalance, stockName, amountBought, currentPrice
-* if (accountBalance > (amountBought * currentPrice))
+  * if (accountBalance > (amountBought * currentPrice))
   > INSERT INTO stocks_held(user_id, stock_id, quantity)
   > VALUES (${username}, ${stockName}, ${amountBought});
   * AND => /PUT/${username}/
@@ -78,10 +78,10 @@ npm start
 - route - /PUT/${username}/stocks_held/
 - input - username, stockName, quantity, new_quantity
 - output - 
-* if(new_quantity > quantity)
+  * if(new_quantity > quantity)
   > UPDATE stocks_held SET quantity = ${new_quantity}
   > WHERE stock_id = ${stock_name} AND user_id = ${username};
-* else
+  * else
   > UPDATE stocks_held SET quantity = ${quantity - new_quantity}
   > WHERE stock_id = ${stock_name} AND user_id = ${username};
 - description - update the amount of a certain stocks a user has
@@ -96,7 +96,7 @@ npm start
 - routes - /POST/${username}/stop_loss/
 - description - create a stop loss for a certian stock at a certain price until a certian timestamp
 - input - username, stockName, targetPrice, quantity, timestamp, accountBalance
-* if (accountBalance > (targetPrice * quantity))
+  * if (accountBalance > (targetPrice * quantity))
   > INSERT INTO stop_loss(user_id, stock_id, stop_price, quantity, exp_date)
   > VALUES (${username}, ${stockName}, ${targetPrice}, ${quantity}, ${timestamp});
 ### Read

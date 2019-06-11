@@ -2,3 +2,8 @@ node_modules
 data.csv
 seed.csv
 stocks.csv
+seed.json
+users.json
+users.csv
+stop-loss.csv
+stocks-held.csv

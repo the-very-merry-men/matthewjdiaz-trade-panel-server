@@ -1,13 +1,26 @@
-// postgres server.js
+// postgres server.js // "index.js"
 const express = require('express');
-const app = express()
+const bodyParser = require('body-parser');
+const path = require('path');
+const db = require('./database/queries.js')
+const app = express();
+const port = 3420;
 
-app.use(express.json())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '/../client/public')));
 
-app.get('/postgres', (req, res) => {
-  return res.status(200).send({ 'message': 'endpoint is working' });
-})
+app.get('/', (request, response) => {
+  response.json({ info: 'Node.js, Express, and Postgres API' })
+});
 
-app.listen(3001)
-console.log('app running on port ', 3001);
+// app.get('/stocks', db.getRandomStock);
+app.get('/api/stocks/:stock/price', db.getStockPrice);
+app.get('/stocks/:stock', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/public/index.html'));
+});
+// app.get('/stocks/:stock', db.getStockTicker);
 
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`)
+});

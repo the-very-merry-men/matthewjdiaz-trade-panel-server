@@ -35,6 +35,8 @@ class TradePanel extends Component {
       return this.setState({ stock }, () => this.fetchData());
     }
     this.fetchData();
+    console.log(match);
+    // console.log('state', this.state.stock);
   }
 
   fetchData() {
@@ -42,6 +44,7 @@ class TradePanel extends Component {
       .then(res => res.json())
       .then(data => this.setState({ data }))
       .catch(err => console.log(err));
+    // console.log('state data', this.state.data);
   }
 
   showOrderTypes() {

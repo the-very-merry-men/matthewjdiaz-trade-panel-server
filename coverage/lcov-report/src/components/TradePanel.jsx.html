@@ -145,7 +145,9 @@
 <a name='L97'></a><a href='#L97'>97</a>
 <a name='L98'></a><a href='#L98'>98</a>
 <a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,6 +159,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -256,6 +260,8 @@ class TradePanel extends Component {
 <span class="cstat-no" title="statement not covered" >    super(props);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.state = {</span>
+      // TODO - componentDidMount() change stock to select * from table limit 1 rand();
+      //// this should randomize the stock page on loadin
       stock: 'inst',
       data: [],
       orderStructure,
@@ -269,14 +275,14 @@ class TradePanel extends Component {
 <span class="cstat-no" title="statement not covered" >    this.showOrderTypes = this.showOrderTypes.bind(this);</span>
 <span class="cstat-no" title="statement not covered" >    this.changeType = this.changeType.bind(this);</span>
 <span class="cstat-no" title="statement not covered" >    this.payloadSwitch = this.payloadSwitch.bind(this);</span>
-<span class="cstat-no" title="statement not covered" >    this.changeTotal = this.changeTotal.bind(this); </span>
+<span class="cstat-no" title="statement not covered" >    this.changeTotal = this.changeTotal.bind(this);</span>
   }
-  
+&nbsp;
 <span class="fstat-no" title="function not covered" >  co</span>mponentDidMount() {
     let match = <span class="cstat-no" title="statement not covered" >window.location.pathname.match(/\/stocks\/(\w+)/i);</span>
     const stock = <span class="cstat-no" title="statement not covered" >match ? match[1] : null;</span>
 <span class="cstat-no" title="statement not covered" >    if (stock) {</span>
-<span class="cstat-no" title="statement not covered" >      return this.setState({stock}, <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.fetchData())</span>;</span>
+<span class="cstat-no" title="statement not covered" >      return this.setState({ stock }, <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.fetchData())</span>;</span>
     }
 <span class="cstat-no" title="statement not covered" >    this.fetchData();</span>
   }
@@ -287,9 +293,9 @@ class TradePanel extends Component {
       .then(<span class="fstat-no" title="function not covered" >da</span>ta =&gt; <span class="cstat-no" title="statement not covered" >this.setState({ data }))</span>
       .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >console.log(err))</span>;
   }
-  
+&nbsp;
 <span class="fstat-no" title="function not covered" >  sh</span>owOrderTypes() {
-<span class="cstat-no" title="statement not covered" >    this.setState( <span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{ showOrderTypes: !state.showOrderTypes })</span>);</span>
+<span class="cstat-no" title="statement not covered" >    this.setState(<span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{ showOrderTypes: !state.showOrderTypes })</span>);</span>
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ch</span>angeType(currType) {
@@ -298,7 +304,7 @@ class TradePanel extends Component {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  pa</span>yloadSwitch(label) {
     const price = <span class="cstat-no" title="statement not covered" >this.state.data.length ? `$${this.state.data[0].price}` : null;</span>
-<span class="cstat-no" title="statement not covered" >    switch(label) {</span>
+<span class="cstat-no" title="statement not covered" >    switch (label) {</span>
       case 'Market Price':
       case 'Limit Price':
 <span class="cstat-no" title="statement not covered" >        return price;</span>
@@ -311,7 +317,7 @@ class TradePanel extends Component {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ch</span>angeTotal(shares) {
     const price = <span class="cstat-no" title="statement not covered" >this.state.data.length ? this.state.data[0].price : 0;</span>
-<span class="cstat-no" title="statement not covered" >    this.setState({ cost: (price*shares).toFixed(2) });</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({ cost: (price * shares).toFixed(2) });</span>
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  re</span>nder() {
@@ -324,17 +330,17 @@ class TradePanel extends Component {
           &lt;/div&gt;
           &lt;div id='header-right' className={showOrderTypes ? 'active-bottom' : ''}&gt;
             &lt;svg id='menu' ref={<span class="fstat-no" title="function not covered" >no</span>de =&gt; <span class="cstat-no" title="statement not covered" >this.node = node}</span> className={showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes}&gt;
-              &lt;Icon/&gt;
+              &lt;Icon /&gt;
             &lt;/svg&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div className='main-container'&gt;
-          {orderStructure[currType].options.map(<span class="fstat-no" title="function not covered" >in</span>put =&gt; <span class="cstat-no" title="statement not covered" >&lt;Options theme={theme} changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)}/&gt;)</span>}
+          {orderStructure[currType].options.map(<span class="fstat-no" title="function not covered" >in</span>put =&gt; <span class="cstat-no" title="statement not covered" >&lt;Options theme={theme} changeTotal={this.changeTotal} key={input.label} dataKey={input.label} label={input.label} type={input.type} payload={this.payloadSwitch(input.label)} /&gt;)</span>}
           &lt;hr&gt;&lt;/hr&gt;
-          &lt;Options label={&lt;strong&gt;{"Estimated Cost"}&lt;/strong&gt;} dataKey="Estimated Cost" type="text" payload={`$${cost}`}/&gt;
+          &lt;Options label={&lt;strong&gt;{"Estimated Cost"}&lt;/strong&gt;} dataKey="Estimated Cost" type="text" payload={`$${cost}`} /&gt;
           &lt;button id="review-order" href="#"&gt;Review Order&lt;/button&gt;
         &lt;/div&gt;
-        {showOrderTypes &amp;&amp; &lt;OrderTypes orderStructure={orderStructure} currType={currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes}/&gt;}
+        {showOrderTypes &amp;&amp; &lt;OrderTypes orderStructure={orderStructure} currType={currType} changeType={this.changeType} showOrderTypes={this.showOrderTypes} /&gt;}
       &lt;/div&gt;
     );
   }
@@ -349,7 +355,7 @@ export default TradePanel;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 04 2019 11:21:58 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jun 08 2019 10:58:30 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

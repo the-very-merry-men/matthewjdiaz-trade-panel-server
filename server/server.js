@@ -10,11 +10,13 @@ app.use(express.static(path.join(__dirname, '/../client/public')));
 
 app.get('/api/stocks/:stock/price', (req, res) => {
   controllers.getPrice(req.params.stock, (data) => {
+    // console.log('data', data);
     res.send(data);
   });
 });
 
 app.get('/stocks/:stock', (req, res) => {
+  console.log('res:', res);
   res.sendFile(path.join(__dirname, '/../client/public/index.html'));
 });
 

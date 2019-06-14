@@ -13,7 +13,8 @@
     "csv-stop-loss": "node --max-old-space-size=4096 ./server/database/SDCseedStopLoss.js",
     "seed-psql": "psql -f seedPostgres.sql trade_panel",
     "test": "jest --coverage --verbose",
-    "postgres": "nodemon ./server/postgresServer.js"
+    "postgres": "nodemon ./server/postgresServer.js",
+    "art": "artillery run postgresArtillery.yml"
   },
   "author": "",
   "license": "ISC",
@@ -52,6 +53,7 @@
     "enzyme-adapter-react-16": "^1.13.1",
     "express": "^4.17.1",
     "jest": "^24.8.0",
+    "newrelic": "^5.10.0",
     "pg": "^7.11.0",
     "sinon": "^7.3.2",
     "webpack": "^2.2.1",

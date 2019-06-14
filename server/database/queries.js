@@ -7,15 +7,17 @@ const pool = new Pool({
   port: 5432,
 });
 
-const getRandomStock = (request, response) => {
-  pool.query(`SELECT * FROM stocks WHERE id = 1`, (error, results) => {
-    if (error) {
-      throw error;
-    }
-    console.log(results.rows);
-    response.status(200).json(results.rows);
-  });
+const ticker = (length) => {
+  let result = '';
+  const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }
+
+// /stocks/:stock
 const getStockTicker = (request, response) => {
   const stock = parseInt(request.params.stock)
   pool.query(`SELECT * FROM stocks WHERE id = ${stock}`, (error, results) => {
@@ -26,23 +28,38 @@ const getStockTicker = (request, response) => {
     response.status(200).json(results.rows);
   });
 }
-
 // /api/stocks/:stock/price
-// api return Example: [{"price":"1087.13"}]
 const getStockPrice = (request, response) => {
   const stock = parseInt(request.params.stock)
-
   pool.query(`SELECT * FROM stocks WHERE id = ${stock}`, (error, results) => {
     if (error) {
       throw error;
     }
-    let obj = [{ "price": String(results.rows[0].current_price) }]
+    // api obj return Example: [{"price":"1087.13"}]
+    let obj = [{ "price": String(results.rows[0].current_price) }];
     response.status(200).json(obj);
   });
 }
 
+// /api/users/:user
+// `INSERT INTO users(username, balance, stocks_held, stop_loss) 
+// VALUES (${username}, ${accountBalance}, false, false)`;
+const postNewUser = (request, response) => {
+  const { accountBalance } = request.body
+  const username = ticker(20);
+  // console.log('req body shit', username, accountBalance);
+  pool.query(`INSERT INTO users(username, balance, stocks_held, stop_loss) VALUES ('${username}', ${accountBalance}, false, false)`, (error, results) => {
+    if (error) {
+      console.log('POST failure');
+      throw error;
+    }
+    // console.log('POST success');
+    response.status(201).send(`User added`);
+  });
+}
+
 module.exports = {
-  getRandomStock,
   getStockTicker,
-  getStockPrice
+  getStockPrice,
+  postNewUser
 }

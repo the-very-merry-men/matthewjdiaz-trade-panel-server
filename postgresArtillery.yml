@@ -1,0 +1,25 @@
+config:
+  target: 'http://localhost:3420'
+  phases:
+    - duration: 120
+      arrivalRate: 725
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - get:
+        url: "/stocks/{{ $randomNumber(1,10000000) }}"
+    - get:
+        url: "/api/stocks/{{ $randomNumber(1,10000000) }}/price"
+    - post:
+        url: "/api/users/:username/:accountBalance"
+        json:
+          username: 'testUser'
+          accountBalance: 666.66
+
+
+# INSERT INTO users (column1, column2) VALUES (value1, value2);
+# INSERT INTO users (username, balance, stocks_held, stop_loss) VALUES ('inlineTest', 420, false, false);
+
+# INSERT INTO link (url, name) VALUES ('http://www.postgresqltutorial.com','PostgreSQL Tutorial');

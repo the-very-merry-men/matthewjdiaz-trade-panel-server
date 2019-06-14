@@ -1,4 +1,5 @@
 // postgres server.js // "index.js"
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -21,6 +22,8 @@ app.get('/stocks/:stock', (req, res) => {
 });
 // app.get('/stocks/:stock', db.getStockTicker);
 
+app.post('/api/users/:username/:accountBalance', db.postNewUser);
+
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+  console.log(`App running on port ${port}.`);
 });

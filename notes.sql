@@ -132,3 +132,18 @@ DELETE
 DELETE FROM stop_loss WHERE user_id = 0 AND stock_id = 867203;
 DELETE FROM stop_loss WHERE user_id = 1 AND stock_id = 9999998;
 DELETE FROM stop_loss WHERE user_id = 2 AND stock_id = 1;
+
+
+
+
+\copy users from '/home/ec2-user/matthewjdiaz-trade-panel-server/users.csv' with CSV;
+
+chmod a+rX /users/darchcruise/ /users/darchcruise/desktop /users/darchcruise/desktop/items_ordered.csv
+
+\COPY users(id,username,balance,stocks_held,stop_loss) 
+FROM '/home/ec2-user/matthewjdiaz-trade-panel-server/users.csv' DELIMITER ',' CSV HEADER;
+SELECT setval('stocks_held_id_seq', COALESCE((SELECT MAX(id)+1 FROM stocks_held), 1), false);
+
+
+COPY stocks_held(id,user_id,stock_id,quantity) 
+FROM '/home/ec2-user/matthewjdiaz-trade-panel-server/stocks-held.csv' DELIMITER ',' CSV HEADER;

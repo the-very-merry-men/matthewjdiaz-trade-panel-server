@@ -1,10 +1,10 @@
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
-const writer = csvWriter();
+const writer = fs.createWriteStream('./seed.csv')
 const faker = require('faker');
 
 const price = () => {
-  return (Math.random() * 2000).toFixed(2);
+  return Number((Math.random() * 1500).toFixed(2));
 }
 
 const ticker = (length) => {
@@ -17,23 +17,40 @@ const ticker = (length) => {
   return result;
 }
 
-const dataGen = () => {
-  writer.pipe(fs.createWriteStream('data.csv'));
-  for (let i = 1; i < 10000001; i++) {
-    writer.write({
-      id: i,
-      name: faker.name.firstName(),
-      ticker: ticker(4),
-      price: price(),
-    });
-    if (i % 1000000 === 0) console.log(i);
+function writeOneMillionTimes(writer, encoding, callback, lines) {
+  // let i = 10;
+  let i = 10000001;
+  const randomObjMaker = () => {
+    let obj = `${i},${faker.name.firstName()},${ticker(4)},${price()}`
+    return obj;
   }
 
-  writer.end();
-  console.log('finished seeding stocks.');
+  write();
+  function write() {
+    let ok = true;
+    do {
+      i--;
+      if (i % 500000 === 0) {
+        console.log(i);
+      }
+      if (i === 1) {
+        // 1,Odie,ODIE,1015.74
+        writer.write(((randomObjMaker()) + '\n'), encoding, callback);
+      } else {
+        ok = writer.write(((randomObjMaker()) + '\n'), encoding);
+      }
+    } while (i > 1 && ok);
+    if (i > 1) {
+      writer.once('drain', write);
+    }
+  }
 }
 
-dataGen();
+writeOneMillionTimes(writer, 'utf8', (err) => {
+  if (err) throw err;
+});
+
+// -vi to edit file from EC2, 
 
 //////////////   -      create stocks.csv by running "npm run csv-stocks"      -   /////////////////
 // COPY stocks(id,name,ticker,current_price,average_price,week52high,week52low) 

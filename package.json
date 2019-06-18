@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon ./server/postgresServer.js",
     "build": "webpack -d",
     "react-dev": "webpack -d --watch",
     "csv-stocks": "node --max-old-space-size=4096 ./server/database/SDCseedStocks.js",

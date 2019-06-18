@@ -12,7 +12,7 @@ class TradePanel extends Component {
     this.state = {
       // TODO - componentDidMount() change stock to select * from table limit 1 rand();
       //// this should randomize the stock page on loadin
-      stock: 'inst',
+      stock: 9999,
       data: [],
       orderStructure,
       showOrderTypes: false,

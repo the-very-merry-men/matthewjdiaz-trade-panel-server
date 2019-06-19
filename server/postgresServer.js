@@ -16,13 +16,13 @@ app.get('/', (request, response) => {
 });
 
 // app.get('/stocks', db.getRandomStock);
-app.get('/api/stocks/price', db.getStockPrice);
+app.get('/api/stocks/:stock/price', db.getStockPrice);
 app.get('/api/stocks/', db.getStockNewRelic);
 app.post('/api/users/', db.postNewUser);
 app.get('/stocks/:stock', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/public/index.html'));
 });
-// app.get('/stocks/:stock', db.getStockTicker);
+app.get('/api/stocks/:stock', db.getStockTicker);
 
 
 app.listen(port, () => {

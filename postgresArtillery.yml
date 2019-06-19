@@ -1,27 +1,27 @@
 config:
   target: 'http://localhost:3420'
   phases:
-    - duration: 10
-      arrivalRate: 100
+    - duration: 5
+      arrivalRate: 1
       # arrivalRate: 333
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
 scenarios:
   - flow:
-    - get:
-        url: "/api/stocks/price"
-        json:
-          stock: "{{ $randomNumber(1,10000000) }}"
+    # - get:
+    #     url: "/api/stocks/price"
+    #     json:
+    #       stock: "{{ $randomNumber(1,10000000) }}"
     - get:
         url: "/api/stocks/"
         json:
           stock: "{{ $randomNumber(1,10000000) }}"
-    - post:
-        url: "/api/users/"
-        json:
-          username: 'testUser'
-          accountBalance: 666.66
+    # - post:
+    #     url: "/api/users/"
+    #     json:
+    #       username: 'testUser'
+    #       accountBalance: 666.66
 
 # INSERT INTO users (column1, column2) VALUES (value1, value2);
 # INSERT INTO users (username, balance, stocks_held, stop_loss) VALUES ('inlineTest', 420, false, false);

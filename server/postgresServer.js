@@ -22,7 +22,7 @@ app.post('/api/users/', db.postNewUser);
 app.get('/stocks/:stock', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/public/index.html'));
 });
-// app.get('/stocks/:stock', db.getStockTicker);
+app.get('/api/stocks/:stock', db.getStockTicker);
 
 
 app.listen(port, () => {

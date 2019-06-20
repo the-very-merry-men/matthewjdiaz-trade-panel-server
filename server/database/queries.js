@@ -2,7 +2,7 @@ const Pool = require('pg').Pool;
 const pool = new Pool({
   user: 'postgres',
   // host: 'localhost',
-  host: 'ec2-3-14-12-98.us-east-2.compute.amazonaws.com',
+  host: '3.14.12.98',
   database: 'trade_panel',
   password: '$password',
   port: 5432,
@@ -20,8 +20,8 @@ const ticker = (length) => {
 
 // /stocks/:stock
 const getStockTicker = (request, response) => {
-  const stock = parseInt(request.params.stock)
-  pool.query(`SELECT * FROM stocks WHERE id = ${stock}`, (error, results) => {
+  //const stock = parseInt(request.params.stock)
+  pool.query(`SELECT * FROM stocks WHERE id = ${request.params.stock}`, (error, results) => {
     if (error) {
       throw error;
     }

@@ -12,7 +12,7 @@ class TradePanel extends Component {
     this.state = {
       // TODO - componentDidMount() change stock to select * from table limit 1 rand();
       //// this should randomize the stock page on loadin
-      stock: 9999,
+      stock: "goog",
       data: [],
       orderStructure,
       showOrderTypes: false,
@@ -33,12 +33,14 @@ class TradePanel extends Component {
     const stock = match ? match[1] : null;
     if (stock) {
       return this.setState({ stock }, () => this.fetchData());
+    } else {
+      let num = Number((Math.random() * 10000000).toFixed())
+      return this.setState({ stock: num }, () => this.fetchData());
     }
-    this.fetchData();
   }
 
   fetchData() {
-    fetch(`/api/stocks/${this.state.stock}/price`)
+    fetch(`/api/stocks/${this.state.stock}`)
       .then(res => res.json())
       .then(data => this.setState({ data }))
       .catch(err => console.log(err));
@@ -54,7 +56,7 @@ class TradePanel extends Component {
   }
 
   payloadSwitch(label) {
-    const price = this.state.data.length ? `$${this.state.data[0].price}` : null;
+    const price = this.state.data.length ? `$${this.state.data[0].current_price}` : null;
     switch (label) {
       case 'Market Price':
       case 'Limit Price':
@@ -67,7 +69,7 @@ class TradePanel extends Component {
   }
 
   changeTotal(shares) {
-    const price = this.state.data.length ? this.state.data[0].price : 0;
+    const price = this.state.data.length ? this.state.data[0].current_price : 0;
     this.setState({ cost: (price * shares).toFixed(2) });
   }
 
@@ -77,7 +79,7 @@ class TradePanel extends Component {
       <div className="main-container">
         <div className='header'>
           <div id='header-left'>
-            <h3>Buy {stock.toUpperCase()}</h3>
+            <h3>Buy {stock}</h3>
           </div>
           <div id='header-right' className={showOrderTypes ? 'active-bottom' : ''}>
             <svg id='menu' ref={node => this.node = node} className={showOrderTypes ? 'active' : ''} width='28' height='28' onClick={this.showOrderTypes}>
